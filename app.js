@@ -42,9 +42,25 @@ require('dotenv').config()
 app.use("/api",checkAuth, routeAuth);
 app.use("/", homeRouter )
 app.use("/api",checkAuth, routeCategory);
-app.use("/api", routerSpeak )
+
 app.use("/api", routerEmail )
 
+app.use("/api", routerQuiz )
+app.use("/api", routerSpeak )
+app.use("/api", routerListenWrite )
+//----------------QUESTION------------------------ 
+
+
+app.use("/api", routerAnswerSpeak )
+app.use("/api", routerAnswerQuiz )
+app.use("/api", routerAnswerListenWrite )
+//----------------ANSWER------------------------ 
+
+
+app.use("/api", routerUserSpeak )
+app.use("/api", routerUserQuiz )
+app.use("/api", routerUserListenWrite )
+//-----------------USER-ANSWER------------------------ 
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("DB Connected"))
