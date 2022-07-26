@@ -17,6 +17,10 @@ const quizSchema = new mongoose.Schema({
     timeLimit:{
         type: String,
         required: true
+    },
+    type:{
+        type: Number,
+        required: true
     }
 },{timestamps:true})
 
