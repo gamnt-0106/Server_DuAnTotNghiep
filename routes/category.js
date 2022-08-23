@@ -7,7 +7,7 @@ import { isAdmin, isAuth, requiredSignin } from "../midlerware/checkAuth";
 const routeCategory = express.Router();
 
 routeCategory.get('/categories', listCategories);
-routeCategory.post('/categories/:userId',requiredSignin , isAuth, isAdmin, addCategory);
+routeCategory.post('/categories/', addCategory);
 routeCategory.put('/categories/:id', editCategory);
 routeCategory.delete('/categories/:id', removeCategory);
 routeCategory.get('/categories/:id', getCategoryById);
