@@ -28,6 +28,12 @@ const contactSchema = new mongoose.Schema({
     message:{
         type: String,
         required: true
+    },
+    status:{
+        type: Number
+    },
+    sendAds:{
+        type: Number
     }
 }, {timestamps: true})
 
