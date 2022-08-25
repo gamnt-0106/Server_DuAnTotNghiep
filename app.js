@@ -22,6 +22,7 @@ import routerUserSpeak from './routes/userSpeak';
 import routerUserQuiz from './routes/userQuiz';
 import routerUserListenWrite from './routes/userListenWrite';
 import routerEmail from './routes/sendMail';
+import routeContact from './routes/contact';
 //-----------------USER-ANSWER------------------------ 
 
 
@@ -42,6 +43,8 @@ require('dotenv').config()
 app.use("/api",checkAuth, routeAuth);
 app.use("/", homeRouter )
 app.use("/api",checkAuth, routeCategory);
+app.use("/api", routeContact);
+
 
 app.use("/api", routerEmail )
 
