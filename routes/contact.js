@@ -5,7 +5,7 @@ import { addContact, editContact, getContactById, listContact, removeContact } f
 const routeContact = express.Router();
 
 routeContact.get('/contact', listContact);
-routeContact.post('/contact/', addContact);
+routeContact.post('/contact', addContact);
 routeContact.put('/contact/:id', editContact);
 routeContact.delete('/contact/:id', removeContact);
 routeContact.get('/contact/:id', getContactById);
