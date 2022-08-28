@@ -11,14 +11,13 @@ const wellcomeSchema =  new mongoose.Schema({
         trim: true
     },
     social: {
-        type: Array    
-
+        type: String   
     },
     reason: {
-        type: Array
+        type: String
     },
     timeStudy:{
-        type:Array
+        type:String
     }
 },{timestamps:true})
 

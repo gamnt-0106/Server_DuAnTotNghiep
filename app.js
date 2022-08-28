@@ -74,12 +74,12 @@ app.use("/api",wellcome)
 //-----------------USER-ANSWER------------------------ 
 
 
-// mongoose
-//   .connect(process.env.MONGO_URI)
-//   .then(() => console.log("DB Connected"))
-//   .catch((error) => console.log("DB not connected ", error));
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("DB Connected"))
+  .catch((error) => console.log("DB not connected ", error));
 
-mongoose.connect('mongodb://localhost:27017/datn')
+// mongoose.connect('mongodb://localhost:27017/datn')
 
 // app.use(express.static(path.join(__dirname, "./frontend/build")));
 
