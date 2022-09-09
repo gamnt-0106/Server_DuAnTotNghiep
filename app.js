@@ -23,11 +23,12 @@ import routerUserQuiz from './routes/userQuiz';
 import routerUserListenWrite from './routes/userListenWrite';
 import routerEmail from './routes/sendMail';
 
-
 import wellcome from './routes/wellcome'
 import paypalR from './routes/paypalRouter';
 //-----------------USER-ANSWER------------------------ 
 
+//Vocabulary
+import vocabulary from './routes/vocabularyRouter'
 
 const { Auth, LoginCredentials  } = require("two-step-auth");
 
@@ -73,6 +74,9 @@ app.use("/api",paypalR)
 app.use("/api",wellcome)
 //-----------------USER-ANSWER------------------------ 
 
+
+//Vocabulary
+app.use("/api", vocabulary)
 
 mongoose
   .connect(process.env.MONGO_URI)

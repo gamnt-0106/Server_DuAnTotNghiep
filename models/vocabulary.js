@@ -17,9 +17,9 @@ const vocabularySchema = new mongoose.Schema({
         type: String
     },
     // Ảnh
-    images:{
+    image:{
         type: String,
-        required: true
+        // required: true
     }
 }, {timestamps: true})
 
