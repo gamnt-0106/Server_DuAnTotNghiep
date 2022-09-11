@@ -27,6 +27,8 @@
     "nodemailer": "^6.7.7",
     "path": "^0.12.7",
     "paypal-rest-sdk": "^1.8.1",
+    "swagger-jsdoc": "^6.2.5",
+    "swagger-ui-express": "^4.5.0",
     "two-step-auth": "^1.1.2",
     "uuid": "^8.3.2"
   },
