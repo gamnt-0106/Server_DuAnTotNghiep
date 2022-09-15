@@ -3,6 +3,7 @@ const { ObjectId } = mongoose
 
 const answerQuizSchema = new mongoose.Schema({
     quiz:{
+        // ObjectId
         type: ObjectId,
         ref: "Quiz"
     },

@@ -8,7 +8,7 @@ const router = express.Router()
 /**
 * @swagger
 * tags:
-*   name: AnswerListenWrites
+*   name: AnswerSpeaks
 *   description: AnswerListenWrite managing API
 */
 
@@ -16,20 +16,20 @@ const router = express.Router()
  * @swagger 
  * components:
  *   schemas:
- *     AnswerListen:
+ *     AnswerSpeak:
  *       type: object
  *       required:
  *         - content
  *       properties:
  *         _id: 
  *           type: string
- *           description: The auto-generated id of AnswerListenWrite
- *         listenWrite:
+ *           description: The auto-generated id of AnswerSpeak
+ *         speak:
  *            type: ObjectId
  *            description: test
  *         content:
  *            type: string 
- *            description: Content of answer listen
+ *            description: Content of answer speak
  *         createdAt: 
  *           type: string
  *           description: Create Time of quiz
@@ -38,61 +38,37 @@ const router = express.Router()
  *           description: Update Time of quiz
  *       example:
  *         _id: 62e8c62b587bcad52fbaf0b7
- *         listenWrite: 62ff6998b77f3ffb3d4ec7c1
- *         content: Demo      
+ *         speak: 62f66676f8b0c6e184ea5042
+ *         content: Demo Speak   
  *         createdAt: 2022-08-02T06:37:31.665+00:00
  *         updatedAt: 2022-08-15T14:13:19.886+00:00
  *   parameters:
- *     AnswerListenID:
+ *     AnswerSpeakID:
  *       in: path
  *       name: id
  *       schema:
  *         type: string
  *       required: true
- *       description: The answerListenWrite id
+ *       description: The AnswerSpeak id
  * 
  * */
 
-/**
- * @swagger
- * components:
- *   schemas:
- *     Demo:
- *       type: object
- *       required:
- *         - title
- *         - author
- *       properties:
- *         id:
- *           type: string
- *           description: The auto-generated id of the book
- *         title:
- *           type: string
- *           description: The book title
- *         author:
- *           type: string
- *           description: The book author
- *       example:
- *         id: d5fE_asz
- *         title: The New Turing Omnibus
- *         author: Alexander K. Dewdney
- */
  router.get("/answerSpeak", listAnswerSpeak )
 /**
  * @swagger
- *   /api/answerListenWrite:
+ *   /api/answerSpeak:
  *     get:
- *       summary: Return the list of all quizs
- *       tags: [AnswerListenWrites]
+ *       summary: Return the list of all AnswerSpeak
+ *       tags: [AnswerSpeaks]
  *       responses:
  *         200: 
- *           description: The List of answerListenWrite
+ *           description: The List of AnswerSpeak
  *           content:
  *             application/json:
  *               schema:
  *                 type: array
  *                 items:
- *                   $ref: '#/components/schemas/AnswerListen'
+ *                   $ref: '#/components/schemas/AnswerSpeak'
  *              
  * */
 
@@ -100,110 +76,110 @@ const router = express.Router()
 
 /**
  * @swagger
- *   /api/answerListenWrite/{id}:
+ *   /api/answerSpeak/{id}:
  *     get:
- *       summary: Get Quiz by id
- *       tags: [AnswerListenWrites]
+ *       summary: Get AnswerSpeak by id
+ *       tags: [AnswerSpeaks]
  *       parameters:
  *           - in: path
  *             name: id
  *             schema:
  *               type: string
  *             required: true
- *             description: The AnswerListenWrite id
+ *             description: The AnswerSpeak id
  *       responses:
  *           200:
- *             description: The AnswerListenWrite detail by id
+ *             description: The AnswerSpeak detail by id
  *             contents:
  *               application/json:
  *                 schema:
- *                   $ref: '#/components/schemas/AnswerListen'
+ *                   $ref: '#/components/schemas/AnswerSpeak'
  *           400:
- *             description: The AnswerListenWrite is Not found
+ *             description: The AnswerSpeak is Not found
  */
  router.get("/answerSpeak/:id", detailAnswerSpeak )
 
 //  ---------------- ADD -------------------
 /**
  * @swagger
- * /api/answerListenWrite:
+ * /api/answerSpeak:
  *   post:
- *     summary: Create a quiz
- *     tags: [AnswerListenWrites]
+ *     summary: Create a AnswerSpeak
+ *     tags: [AnswerSpeaks]
  *     requestBody:
  *       required: true
  *       content: 
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/AnswerListen'
+ *             $ref: '#/components/schemas/AnswerSpeak'
  *     responses:
  *       200: 
- *         description: AnswerListenWrite was successfully created
+ *         description: AnswerSpeak was successfully created
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/AnswerListen'
+ *               $ref: '#/components/schemas/AnswerSpeak'
  *       400: 
- *         description: Fail to create a AnswerListenWrite
+ *         description: Fail to create a AnswerSpeak
  */
  router.post("/answerSpeak", addAnswerSpeak )
 
 // ----------- Edit ---------------
 /**
  * @swagger
- * /api/answerListenWrite/{id}:
+ * /api/answerSpeak/{id}:
  *   put:
- *     summary: Update a answeListenWrite
- *     tags: [AnswerListenWrites]
+ *     summary: Update a AnswerSpeak
+ *     tags: [AnswerSpeaks]
  *     parameters:
  *       - in: path
  *         name: id
  *         schema:
  *           type: string
  *         required: true
- *         description: The AnswerListenWrite id
+ *         description: The AnswerSpeak id
  *     requestBody:
  *       required: true
  *       content: 
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/AnswerListen'
+ *             $ref: '#/components/schemas/AnswerSpeak'
  *     responses:
  *       200: 
- *         description: AnswerListenWrite was successfully updated
+ *         description: AnswerSpeak was successfully updated
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/AnswerListen'
+ *               $ref: '#/components/schemas/AnswerSpeak'
  *       400: 
- *         description: Fail to updated a AnswerListenWrite
+ *         description: Fail to updated a AnswerSpeak
  */
  router.put("/answerSpeak/:id", editAnswerSpeak )
 
 //  ------------ Delete --------------
 /**
  * @swagger
- * /api/answerListenWrite/{id}:
+ * /api/answerSpeak/{id}:
  *   delete:
- *     summary: Remove a quiz by id
- *     tags: [AnswerListenWrites]
+ *     summary: Remove a AnswerSpeak by id
+ *     tags: [AnswerSpeaks]
  *     parameters:
- *       - $ref: '#/components/parameters/AnswerListenID'
+ *       - $ref: '#/components/parameters/AnswerSpeakID'
  *     requestBody:
  *       required: true
  *       content: 
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/AnswerListen'
+ *             $ref: '#/components/schemas/AnswerSpeak'
  *     responses:
  *       200: 
- *         description: AnswerListen was successfully removed
+ *         description: AnswerSpeak was successfully removed
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/AnswerListen'
+ *               $ref: '#/components/schemas/AnswerSpeak'
  *       400: 
- *         description: Fail to removed a AnswerListen
+ *         description: Fail to removed a AnswerSpeak
  */
  router.delete("/answerSpeak/:id", deleteAnswerSpeak )
 

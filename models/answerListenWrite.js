@@ -3,6 +3,7 @@ const { ObjectId } = mongoose
 
 const answerListenWriteSchema = new mongoose.Schema({
     listenWrite:{
+        // ObjectId
         type: ObjectId,
         ref: "ListenWrite"
     },
