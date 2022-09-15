@@ -16,19 +16,20 @@ const router = express.Router()
  * @swagger 
  * components:
  *   schemas:
- *    AnswerListenWrite :
+ *     AnswerListen:
  *       type: object
  *       required:
  *         - content
  *       properties:
  *         _id: 
  *           type: string
- *           description: The auto-generated id of quiz
+ *           description: The auto-generated id of AnswerListenWrite
  *         listenWrite:
- *           type: ObjectId: string
+ *            type: string
  *            description: test
  *         content:
  *            type: string 
+ *            description: Content of answer listen
  *         createdAt: 
  *           type: string
  *           description: Create Time of quiz
@@ -42,7 +43,7 @@ const router = express.Router()
  *         createdAt: 2022-08-02T06:37:31.665+00:00
  *         updatedAt: 2022-08-15T14:13:19.886+00:00
  *   parameters:
- *     answeListenWriteID:
+ *     AnswerListenID:
  *       in: path
  *       name: id
  *       schema:
@@ -51,6 +52,31 @@ const router = express.Router()
  *       description: The answerListenWrite id
  * 
  * */
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Demo:
+ *       type: object
+ *       required:
+ *         - title
+ *         - author
+ *       properties:
+ *         id:
+ *           type: string
+ *           description: The auto-generated id of the book
+ *         title:
+ *           type: string
+ *           description: The book title
+ *         author:
+ *           type: string
+ *           description: The book author
+ *       example:
+ *         id: d5fE_asz
+ *         title: The New Turing Omnibus
+ *         author: Alexander K. Dewdney
+ */
  router.get("/answerListenWrite", listAnswerListenWrite )
 /**
  * @swagger
@@ -66,7 +92,7 @@ const router = express.Router()
  *               schema:
  *                 type: array
  *                 items:
- *                   $ref: '#/components/schemas/AnswerListenWrite'
+ *                   $ref: '#/components/schemas/AnswerListen'
  *              
  * */
 
@@ -91,7 +117,7 @@ const router = express.Router()
  *             contents:
  *               application/json:
  *                 schema:
- *                   $ref: '#/components/schemas/AnswerListenWrite'
+ *                   $ref: '#/components/schemas/AnswerListen'
  *           400:
  *             description: The AnswerListenWrite is Not found
  */
@@ -109,14 +135,14 @@ const router = express.Router()
  *       content: 
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/AnswerListenWrite'
+ *             $ref: '#/components/schemas/AnswerListen'
  *     responses:
  *       200: 
  *         description: AnswerListenWrite was successfully created
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/AnswerListenWrite'
+ *               $ref: '#/components/schemas/AnswerListen'
  *       400: 
  *         description: Fail to create a AnswerListenWrite
  */
@@ -141,14 +167,14 @@ router.post("/answerListenWrite", addAnswerListenWrite )
  *       content: 
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/AnswerListenWrite'
+ *             $ref: '#/components/schemas/AnswerListen'
  *     responses:
  *       200: 
  *         description: AnswerListenWrite was successfully updated
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/AnswerListenWrite'
+ *               $ref: '#/components/schemas/AnswerListen'
  *       400: 
  *         description: Fail to updated a AnswerListenWrite
  */
@@ -162,22 +188,22 @@ router.put("/answerListenWrite/:id", editAnswerListenWrite )
  *     summary: Remove a quiz by id
  *     tags: [AnswerListenWrites]
  *     parameters:
- *       - $ref: '#/components/parameters/answeListenWriteID'
+ *       - $ref: '#/components/parameters/AnswerListenID'
  *     requestBody:
  *       required: true
  *       content: 
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/AnswerListenWrite'
+ *             $ref: '#/components/schemas/AnswerListen'
  *     responses:
  *       200: 
- *         description: Quiz was successfully removed
+ *         description: AnswerListen was successfully removed
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/AnswerListenWrite'
+ *               $ref: '#/components/schemas/AnswerListen'
  *       400: 
- *         description: Fail to removed a Quiz
+ *         description: Fail to removed a AnswerListen
  */
 router.delete("/answerListenWrite/:id", deleteAnswerListenWrite )
 
