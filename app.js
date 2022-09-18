@@ -27,15 +27,18 @@ import routerUserListenWrite from './routes/userListenWrite';
 import routerEmail from './routes/sendMail';
 import routeContact from './routes/contact';
 
-
 import wellcome from './routes/wellcome'
 import paypalR from './routes/paypalRouter';
 
 //-----------------USER-ANSWER------------------------ 
 
+
 //-----------------History------------------------ 
 import routerHistory from './routes/history';
 
+
+//Vocabulary
+import vocabulary from './routes/vocabularyRouter'
 
 
 const { Auth, LoginCredentials  } = require("two-step-auth");
@@ -109,10 +112,14 @@ app.use("/api",wellcome)
 //-----------------USER-ANSWER------------------------ 
 
 
+//Vocabulary
+app.use("/api", vocabulary)
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("DB Connected"))
   .catch((error) => console.log("DB not connected ", error));
+
 
 // mongoose.connect('mongodb://localhost:27017/datn')
 
