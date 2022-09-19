@@ -15,7 +15,7 @@ const quizSchema = new mongoose.Schema({
         required: true
     },
     timeLimit:{
-        type: String,
+        type: Number,
         required: true
     },
     type:{
