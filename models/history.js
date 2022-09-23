@@ -6,18 +6,26 @@ const historySchema = new mongoose.Schema({
         type: ObjectId,
         ref: "User"
     },
-    score:{
+    // score:{
+    //     type: ObjectId,
+    //     ref: "Score"
+    // },
+    category:{
         type: ObjectId,
-        ref: "Score"
+        ref: "Category"
     },
-    totalScore:{
+    totalPoint:{
         type: Number,
         required: true
     },
-    experience:{
+    type:{
         type: Number,
         required: true
-    }
+    },
+    // experience:{
+    //     type: Number,
+    //     required: true
+    // }
 })
 
 export default mongoose.model("History",historySchema)

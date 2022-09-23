@@ -1,5 +1,9 @@
 
 import categories from "../models/category"
+<<<<<<< HEAD
+=======
+import History from "../models/history";
+>>>>>>> 23cc9d2a8d4b2c3d29aa13a670fa933e75b73b66
 import ListenWrite from "../models/listenWrite";
 import Quiz from "../models/quiz";
 import Speak  from "../models/speak";
@@ -19,10 +23,20 @@ export const detailCategory = async (req, res) => {
     try {
         const category = await categories.findOne({_id: req.params.id }).exec();
         const quizs = await Quiz.find({category: category._id}).populate("category").exec()
+<<<<<<< HEAD
 
         const speak = await Speak.find({category: category._id}).populate("category").exec()
         const listenWrite = await ListenWrite.find({category: category._id}).populate("category").exec()
         res.json({category, quizs, speak, listenWrite})
+=======
+        const speak = await Speak.find({category: category._id}).populate("category").exec()
+        const listenWrite = await ListenWrite.find({category: category._id}).populate("category").exec()
+
+        
+       
+        const history = await History.find({category: category, user:"62c853c16948a16fbde3b43e"}).populate("user").exec()
+        res.json({category, quizs, speak, listenWrite,history})
+>>>>>>> 23cc9d2a8d4b2c3d29aa13a670fa933e75b73b66
 
         // const quiz = await Quiz.findOne({_id: req.params.id }).exec()
         // const answerQuiz = await AnswerQuiz.find({quiz}).populate("quiz").exec()
