@@ -18,6 +18,14 @@ const historySchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    totalCorrect:{
+        type: Number,
+        required: true
+    },
+    result:{
+        type: Number,
+        required: true
+    },
     type:{
         type: Number,
         required: true
@@ -26,6 +34,6 @@ const historySchema = new mongoose.Schema({
     //     type: Number,
     //     required: true
     // }
-})
+},{timestamps:true})
 
 export default mongoose.model("History",historySchema)
