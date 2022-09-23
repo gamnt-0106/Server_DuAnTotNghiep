@@ -33,6 +33,7 @@ import paypalR from './routes/paypalRouter';
 
 //Vocabulary
 import vocabulary from './routes/vocabularyRouter'
+import topicVocabulary from './routes/topicVocabulary';
 
 const { Auth, LoginCredentials  } = require("two-step-auth");
 
@@ -104,7 +105,7 @@ app.use("/api",wellcome)
 
 //Vocabulary
 app.use("/api", vocabulary)
-
+app.use("/api", topicVocabulary)
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("DB Connected"))
