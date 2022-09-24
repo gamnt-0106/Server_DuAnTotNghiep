@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const grammarSchema = mongoose.Schema({
+    name:{
+      type: String,
+      require: true  
+    },
     image:{
         type:String,
         require: true
