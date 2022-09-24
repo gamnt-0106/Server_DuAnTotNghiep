@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+const {ObjectId} = mongoose
 const vocabularySchema = new mongoose.Schema({
     // Từ
     words:{
@@ -18,6 +18,14 @@ const vocabularySchema = new mongoose.Schema({
     },
     // Ảnh
     image:{
+        type: String,
+        // required: true
+    },
+    category:{
+        type: ObjectId,
+        ref:"TopicVocabulary"
+    },
+    audio:{
         type: String,
         // required: true
     }
