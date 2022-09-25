@@ -33,6 +33,7 @@ import paypalR from './routes/paypalRouter';
 
 //Vocabulary
 import vocabulary from './routes/vocabularyRouter'
+import routeComment from './routes/comment';
 
 const { Auth, LoginCredentials  } = require("two-step-auth");
 
@@ -73,6 +74,8 @@ app.use("/", homeRouter )
 app.use("/api",checkAuth, routeAuth);
 app.use("/api",checkAuth, routeCategory);
 app.use("/api", routeContact);
+app.use("/api", routeComment);
+
 
 
 app.use("/api", routerEmail )
