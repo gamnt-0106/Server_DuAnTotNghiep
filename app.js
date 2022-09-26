@@ -25,6 +25,10 @@ import routerEmail from './routes/sendMail';
 //-----------------USER-ANSWER------------------------ 
 
 
+//----------------Lecture Video------------------------ 
+
+import rourerLectureVideo from './routes/lectureVideo'
+
 const { Auth, LoginCredentials  } = require("two-step-auth");
 
 const app = express();
@@ -61,6 +65,11 @@ app.use("/api", routerUserSpeak )
 app.use("/api", routerUserQuiz )
 app.use("/api", routerUserListenWrite )
 //-----------------USER-ANSWER------------------------ 
+
+//----------------Lecture Video------------------------ 
+
+app.use("/api", rourerLectureVideo )
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("DB Connected"))
