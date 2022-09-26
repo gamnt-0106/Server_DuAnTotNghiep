@@ -2,6 +2,9 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors'
 import morgan from 'morgan'
+import swaggerUI from 'swagger-ui-express'
+import swaggerJsDoc from 'swagger-jsdoc'
+
 import homeRouter from './routes/home';
 import { checkAuth } from './midlerware/checkAuth';
 import routeAuth from './routes/auth';
@@ -22,14 +25,47 @@ import routerUserSpeak from './routes/userSpeak';
 import routerUserQuiz from './routes/userQuiz';
 import routerUserListenWrite from './routes/userListenWrite';
 import routerEmail from './routes/sendMail';
+import routeContact from './routes/contact';
+
+import wellcome from './routes/wellcome'
+import paypalR from './routes/paypalRouter';
+
 //-----------------USER-ANSWER------------------------ 
 
+
+//-----------------History------------------------ 
+import routerHistory from './routes/history';
+
+
+//Vocabulary
+import vocabulary from './routes/vocabularyRouter'
+import topicVocabulary from './routes/topicVocabulary';
 
 //----------------Lecture Video------------------------ 
 
 import rourerLectureVideo from './routes/lectureVideo'
 
 const { Auth, LoginCredentials  } = require("two-step-auth");
+
+const options = {
+  definition:{
+    openapi: "3.0.0",
+    info:{
+      title: "API VianEnglish",
+      version:"1.0.0",
+      description: "Documents API VianEnglish"
+    },
+    server:[
+      {
+        url: "http://localhost:8000"
+      }
+    ],
+  },
+  apis:["./routes/*.js"]
+}
+
+const specs = swaggerJsDoc(options)
+
 
 const app = express();
 const path = require("path");
@@ -43,9 +79,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors())
 require('dotenv').config()
 
-app.use("/api",checkAuth, routeAuth);
+app.use("/documents", swaggerUI.serve, swaggerUI.setup(specs))
 app.use("/", homeRouter )
+app.use("/api",checkAuth, routeAuth);
 app.use("/api",checkAuth, routeCategory);
+app.use("/api", routeContact);
+
 
 app.use("/api", routerEmail )
 
@@ -64,17 +103,32 @@ app.use("/api", routerAnswerListenWrite )
 app.use("/api", routerUserSpeak )
 app.use("/api", routerUserQuiz )
 app.use("/api", routerUserListenWrite )
+
+//----------------History------------------------ 
+app.use("/api",routerHistory )
+
+
+//----------------Payment-----------------------
+app.use("/api",paypalR)
+
+// ---------------Wellcome----------------------
+app.use("/api",wellcome)
 //-----------------USER-ANSWER------------------------ 
 
 //----------------Lecture Video------------------------ 
 
 app.use("/api", rourerLectureVideo )
 
+//Vocabulary
+app.use("/api", vocabulary)
+app.use("/api", topicVocabulary)
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("DB Connected"))
   .catch((error) => console.log("DB not connected ", error));
 
+
+// mongoose.connect('mongodb://localhost:27017/datn')
 
 // app.use(express.static(path.join(__dirname, "./frontend/build")));
 
