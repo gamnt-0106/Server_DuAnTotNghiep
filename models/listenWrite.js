@@ -11,26 +11,6 @@ const listenWriteSchema = new mongoose.Schema({
         type: ObjectId,
         ref: "Category"
     },
-    content:[
-      {
-        name:{
-            type: String,
-            required:true
-        },
-        text:{
-            type: String,
-            required:true
-        },
-        answer:{
-            type: Array,
-        }
-      }
-    ] ,
-       
-    // order:{
-    //     type: Number,
-    //     required:true
-    // },
     audio:{
         type: String,
         required:true

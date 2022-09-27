@@ -14,6 +14,7 @@ import routeCategory from './routes/category';
 import routerSpeak from './routes/speak';
 import routerQuiz from './routes/quiz';
 import routerListenWrite from './routes/listenWrite'; 
+import routerQuestionListenWrite from './routes/questionListenWrite'; 
 //----------------QUESTION------------------------ 
 
 import routerAnswerSpeak from './routes/answerSpeak';
@@ -39,7 +40,8 @@ import routerHistory from './routes/history';
 
 //Vocabulary
 import vocabulary from './routes/vocabularyRouter'
-
+import topicVocabulary from './routes/topicVocabulary';
+import grammar from './routes/grammar';
 
 const { Auth, LoginCredentials  } = require("two-step-auth");
 
@@ -87,6 +89,7 @@ app.use("/api", routerEmail )
 app.use("/api", routerQuiz )
 app.use("/api", routerSpeak )
 app.use("/api", routerListenWrite )
+app.use("/api", routerQuestionListenWrite )
 //----------------QUESTION------------------------ 
 
 
@@ -114,7 +117,8 @@ app.use("/api",wellcome)
 
 //Vocabulary
 app.use("/api", vocabulary)
-
+app.use("/api", topicVocabulary)
+app.use("/api", grammar)
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("DB Connected"))
