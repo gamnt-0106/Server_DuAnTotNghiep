@@ -1,7 +1,6 @@
 import Vocabulary from "../models/vocabulary";
 
 export const listVocabulary = async (req, res) => {
-    console.log('123');
     try {
         const vocabulary = await Vocabulary.find().select("-__v").populate('category').exec();
         res.json(vocabulary)
