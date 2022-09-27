@@ -41,6 +41,9 @@ import routerHistory from './routes/history';
 //Vocabulary
 import vocabulary from './routes/vocabularyRouter'
 import topicVocabulary from './routes/topicVocabulary';
+//----------------Lecture Video------------------------ 
+
+import rourerLectureVideo from './routes/lectureVideo';
 import grammar from './routes/grammar';
 
 const { Auth, LoginCredentials  } = require("two-step-auth");
@@ -114,6 +117,9 @@ app.use("/api",paypalR)
 app.use("/api",wellcome)
 //-----------------USER-ANSWER------------------------ 
 
+//----------------Lecture Video------------------------ 
+
+app.use("/api", rourerLectureVideo )
 
 //Vocabulary
 app.use("/api", vocabulary)
