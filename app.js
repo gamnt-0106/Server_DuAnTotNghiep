@@ -14,6 +14,7 @@ import routeCategory from './routes/category';
 import routerSpeak from './routes/speak';
 import routerQuiz from './routes/quiz';
 import routerListenWrite from './routes/listenWrite'; 
+import routerQuestionListenWrite from './routes/questionListenWrite'; 
 //----------------QUESTION------------------------ 
 
 import routerAnswerSpeak from './routes/answerSpeak';
@@ -88,6 +89,7 @@ app.use("/api", routerEmail )
 app.use("/api", routerQuiz )
 app.use("/api", routerSpeak )
 app.use("/api", routerListenWrite )
+app.use("/api", routerQuestionListenWrite )
 //----------------QUESTION------------------------ 
 
 
