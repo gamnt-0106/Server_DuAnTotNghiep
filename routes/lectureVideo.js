@@ -105,7 +105,7 @@ router.get("/lecture-videos", listLectureVideos)
  *                 schema:
  *                   $ref: '#/components/schemas/LectureVideo'
  *           400:
- *             description: The Quiz is Not found
+ *             description: The Lecture Video is Not found
  */
 
 router.get("/lecture-video/:id", detailLectureVideo)
@@ -191,12 +191,12 @@ router.put("/lecture-video/:id", editLectureVideo)
  *             $ref: '#/components/schemas/LectureVideo'
  *     responses:
  *       200: 
- *         description: Quiz was successfully removed
+ *         description: Lecture Video was successfully removed
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/LectureVideo'
- *       400: Quiz
+ *       400:
  *         description: Fail to removed a LectureVideo
  */
 
