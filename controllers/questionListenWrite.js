@@ -11,7 +11,7 @@ export const addQuestionListenWrite = async (req,res)=>{
 
 export const listQuestionListenWriteByIdQuestion = async (req,res)=>{
     try {
-        const questionListenWrite = await QuestionListenWrite.find({idListenWrite: req.params.id }).exec()
+        const questionListenWrite = await QuestionListenWrite.find({idListenWrite: req.params.id }).sort({'order':'asc'}).exec()
         res.json(questionListenWrite)
     } catch (error) {
         res.status(400).json({message:"Không tìm thấy Data"})
