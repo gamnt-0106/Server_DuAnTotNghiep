@@ -11,18 +11,34 @@ const commentSchema = new mongoose.Schema({
     datetime: {
         type: String,
     },
-    
     author: {
         type: String,
     },
     avatar: {
         type: String
     },
-    like: {
-        String
-    },
-    dislike:{
-        String
+    like: [
+        {
+            userId: {
+                type: String
+            },
+            status: {
+                type: String
+            }
+        }
+    ],
+    dislike: [
+        {
+            userId: {
+                type: String
+            },
+            status: {
+                type: String
+            }
+        }
+    ],
+    rating: {
+        type: Number
     }
 }, { timestamps: true })
 

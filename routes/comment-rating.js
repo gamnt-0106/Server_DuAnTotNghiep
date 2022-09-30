@@ -8,6 +8,7 @@ routeAuth.post('/signin',signIn);
 routeAuth.get('/users/:id',userDetail);
 routeAuth.get('/users',getUser);
 routeAuth.put('/users/:id',updateUser);
+
 routeAuth.delete('/users/:id',deleteUser);
 
 
