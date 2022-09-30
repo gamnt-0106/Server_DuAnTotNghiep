@@ -1,9 +1,8 @@
 import Vocabulary from "../models/vocabulary";
 
 export const listVocabulary = async (req, res) => {
-    console.log('123');
     try {
-        const vocabulary = await Vocabulary.find().exec();
+        const vocabulary = await Vocabulary.find().select("-__v").populate('category').exec();
         res.json(vocabulary)
     } catch (error) {
       res.status(400).json({massage:"Không tìm thấy!"});

@@ -14,6 +14,7 @@ import routeCategory from './routes/category';
 import routerSpeak from './routes/speak';
 import routerQuiz from './routes/quiz';
 import routerListenWrite from './routes/listenWrite'; 
+import routerQuestionListenWrite from './routes/questionListenWrite'; 
 //----------------QUESTION------------------------ 
 
 import routerAnswerSpeak from './routes/answerSpeak';
@@ -29,11 +30,25 @@ import routeContact from './routes/contact';
 
 import wellcome from './routes/wellcome'
 import paypalR from './routes/paypalRouter';
+
 //-----------------USER-ANSWER------------------------ 
+
+
+//-----------------History------------------------ 
+import routerHistory from './routes/history';
+
 
 //Vocabulary
 import vocabulary from './routes/vocabularyRouter'
+<<<<<<< HEAD
 import routeComment from './routes/comment';
+=======
+import topicVocabulary from './routes/topicVocabulary';
+//----------------Lecture Video------------------------ 
+
+import rourerLectureVideo from './routes/lectureVideo';
+import grammar from './routes/grammar';
+>>>>>>> a05a844ab792be9c9ab187c42922fcbda25dc3d1
 
 const { Auth, LoginCredentials  } = require("two-step-auth");
 
@@ -83,6 +98,7 @@ app.use("/api", routerEmail )
 app.use("/api", routerQuiz )
 app.use("/api", routerSpeak )
 app.use("/api", routerListenWrite )
+app.use("/api", routerQuestionListenWrite )
 //----------------QUESTION------------------------ 
 
 
@@ -96,6 +112,9 @@ app.use("/api", routerUserSpeak )
 app.use("/api", routerUserQuiz )
 app.use("/api", routerUserListenWrite )
 
+//----------------History------------------------ 
+app.use("/api",routerHistory )
+
 
 //----------------Payment-----------------------
 app.use("/api",paypalR)
@@ -104,14 +123,19 @@ app.use("/api",paypalR)
 app.use("/api",wellcome)
 //-----------------USER-ANSWER------------------------ 
 
+//----------------Lecture Video------------------------ 
+
+app.use("/api", rourerLectureVideo )
 
 //Vocabulary
 app.use("/api", vocabulary)
-
+app.use("/api", topicVocabulary)
+app.use("/api", grammar)
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("DB Connected"))
   .catch((error) => console.log("DB not connected ", error));
+
 
 // mongoose.connect('mongodb://localhost:27017/datn')
 
