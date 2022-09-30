@@ -11,7 +11,6 @@ const listenWriteSchema = new mongoose.Schema({
         type: ObjectId,
         ref: "Category"
     },
-<<<<<<< HEAD
     content: [
         {
             name: {
@@ -32,10 +31,7 @@ const listenWriteSchema = new mongoose.Schema({
     //     type: Number,
     //     required:true
     // },
-    audio: {
-=======
     audio:{
->>>>>>> a05a844ab792be9c9ab187c42922fcbda25dc3d1
         type: String,
         required: true
     }
