@@ -40,11 +40,15 @@ import routerHistory from './routes/history';
 
 //Vocabulary
 import vocabulary from './routes/vocabularyRouter'
+<<<<<<< HEAD
+import routeComment from './routes/comment';
+=======
 import topicVocabulary from './routes/topicVocabulary';
 //----------------Lecture Video------------------------ 
 
 import rourerLectureVideo from './routes/lectureVideo';
 import grammar from './routes/grammar';
+>>>>>>> a05a844ab792be9c9ab187c42922fcbda25dc3d1
 
 const { Auth, LoginCredentials  } = require("two-step-auth");
 
@@ -85,6 +89,8 @@ app.use("/", homeRouter )
 app.use("/api",checkAuth, routeAuth);
 app.use("/api",checkAuth, routeCategory);
 app.use("/api", routeContact);
+app.use("/api", routeComment);
+
 
 
 app.use("/api", routerEmail )
