@@ -25,7 +25,7 @@ const router = express.Router()
  *           type: string
  *           description: The auto-generated id of AnswerListenWrite
  *         listenWrite:
- *            type: string
+ *            type: ObjectId
  *            description: test
  *         content:
  *            type: string 
@@ -38,7 +38,7 @@ const router = express.Router()
  *           description: Update Time of quiz
  *       example:
  *         _id: 62e8c62b587bcad52fbaf0b7
- *         listenWrite: Demo
+ *         listenWrite: 62ff6998b77f3ffb3d4ec7c1
  *         content: Demo      
  *         createdAt: 2022-08-02T06:37:31.665+00:00
  *         updatedAt: 2022-08-15T14:13:19.886+00:00

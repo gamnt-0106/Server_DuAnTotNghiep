@@ -13,7 +13,10 @@ import routeCategory from './routes/category';
 
 import routerSpeak from './routes/speak';
 import routerQuiz from './routes/quiz';
-import routerListenWrite from './routes/listenWrite';
+
+import routerListenWrite from './routes/listenWrite'; 
+import routerQuestionListenWrite from './routes/questionListenWrite'; 
+
 //----------------QUESTION------------------------ 
 
 import routerAnswerSpeak from './routes/answerSpeak';
@@ -39,10 +42,15 @@ import routerHistory from './routes/history';
 
 //Vocabulary
 import vocabulary from './routes/vocabularyRouter'
+import routeComment from './routes/comment';
 import topicVocabulary from './routes/topicVocabulary';
+//----------------Lecture Video------------------------ 
 
 
-const { Auth, LoginCredentials } = require("two-step-auth");
+import rourerLectureVideo from './routes/lectureVideo';
+import grammar from './routes/grammar';
+const { Auth, LoginCredentials  } = require("two-step-auth");
+
 
 const options = {
   definition: {
@@ -83,13 +91,18 @@ app.use("/", homeRouter)
 app.use("/api", checkAuth, routeAuth);
 app.use("/api", checkAuth, routeCategory);
 app.use("/api", routeContact);
+app.use("/api", routeComment);
+
 
 
 app.use("/api", routerEmail)
 
-app.use("/api", routerQuiz)
-app.use("/api", routerSpeak)
-app.use("/api", routerListenWrite)
+
+app.use("/api", routerQuiz )
+app.use("/api", routerSpeak )
+app.use("/api", routerListenWrite )
+app.use("/api", routerQuestionListenWrite )
+
 //----------------QUESTION------------------------ 
 
 
@@ -114,10 +127,14 @@ app.use("/api", paypalR)
 app.use("/api", wellcome)
 //-----------------USER-ANSWER------------------------ 
 
+//----------------Lecture Video------------------------ 
+
+app.use("/api", rourerLectureVideo )
 
 //Vocabulary
 app.use("/api", vocabulary)
 app.use("/api", topicVocabulary)
+app.use("/api", grammar)
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("DB Connected"))
