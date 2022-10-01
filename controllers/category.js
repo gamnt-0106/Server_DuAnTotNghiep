@@ -22,15 +22,9 @@ export const detailCategory = async (req, res) => {
         const quizs = await Quiz.find({category: category._id}).populate("category").exec()
         const speak = await Speak.find({category: category._id}).populate("category").exec()
         const listenWrite = await ListenWrite.find({category: category._id}).populate("category").exec()
-
-        
-       
         const history = await History.find({category: category, user:"62c853c16948a16fbde3b43e"}).populate("user").exec()
-        res.json({category, quizs, speak, listenWrite,history})
+        res.json({category, quizs, speak, listenWrite, history})
 
-        // const quiz = await Quiz.findOne({_id: req.params.id }).exec()
-        // const answerQuiz = await AnswerQuiz.find({quiz}).populate("quiz").exec()
-        // res.json({quiz,answerQuiz})
     } catch (error) {
         res.status(400).json({message:"Không tìm thấy"})
     }

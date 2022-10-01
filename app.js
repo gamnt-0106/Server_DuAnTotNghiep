@@ -13,7 +13,7 @@ import routeCategory from './routes/category';
 
 import routerSpeak from './routes/speak';
 import routerQuiz from './routes/quiz';
-import routerListenWrite from './routes/listenWrite'; 
+import routerListenWrite from './routes/listenWrite';
 //----------------QUESTION------------------------ 
 
 import routerAnswerSpeak from './routes/answerSpeak';
@@ -42,23 +42,23 @@ import vocabulary from './routes/vocabularyRouter'
 import topicVocabulary from './routes/topicVocabulary';
 
 
-const { Auth, LoginCredentials  } = require("two-step-auth");
+const { Auth, LoginCredentials } = require("two-step-auth");
 
 const options = {
-  definition:{
+  definition: {
     openapi: "3.0.0",
-    info:{
+    info: {
       title: "API VianEnglish",
-      version:"1.0.0",
+      version: "1.0.0",
       description: "Documents API VianEnglish"
     },
-    server:[
+    server: [
       {
         url: "http://localhost:8000"
       }
     ],
   },
-  apis:["./routes/*.js"]
+  apis: ["./routes/*.js"]
 }
 
 const specs = swaggerJsDoc(options)
@@ -76,40 +76,42 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors())
 require('dotenv').config()
 
+// swagger API documents router
 app.use("/documents", swaggerUI.serve, swaggerUI.setup(specs))
-app.use("/", homeRouter )
-app.use("/api",checkAuth, routeAuth);
-app.use("/api",checkAuth, routeCategory);
+
+app.use("/", homeRouter)
+app.use("/api", checkAuth, routeAuth);
+app.use("/api", checkAuth, routeCategory);
 app.use("/api", routeContact);
 
 
-app.use("/api", routerEmail )
+app.use("/api", routerEmail)
 
-app.use("/api", routerQuiz )
-app.use("/api", routerSpeak )
-app.use("/api", routerListenWrite )
+app.use("/api", routerQuiz)
+app.use("/api", routerSpeak)
+app.use("/api", routerListenWrite)
 //----------------QUESTION------------------------ 
 
 
-app.use("/api", routerAnswerSpeak )
-app.use("/api", routerAnswerQuiz )
-app.use("/api", routerAnswerListenWrite )
+app.use("/api", routerAnswerSpeak)
+app.use("/api", routerAnswerQuiz)
+app.use("/api", routerAnswerListenWrite)
 //----------------ANSWER------------------------ 
 
 
-app.use("/api", routerUserSpeak )
-app.use("/api", routerUserQuiz )
-app.use("/api", routerUserListenWrite )
+app.use("/api", routerUserSpeak)
+app.use("/api", routerUserQuiz)
+app.use("/api", routerUserListenWrite)
 
 //----------------History------------------------ 
-app.use("/api",routerHistory )
+app.use("/api", routerHistory)
 
 
 //----------------Payment-----------------------
-app.use("/api",paypalR)
+app.use("/api", paypalR)
 
 // ---------------Wellcome----------------------
-app.use("/api",wellcome)
+app.use("/api", wellcome)
 //-----------------USER-ANSWER------------------------ 
 
 
@@ -139,6 +141,9 @@ mongoose
 
 const port = process.env.PORT || 8000
 
+
+
 app.listen(port, () => {
     console.log("Server is running on port 8000");
 });
+
