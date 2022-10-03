@@ -22,6 +22,10 @@ const userQuizSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    answer:{
+        type: String,
+        
+    },
 
 },{timestamps:true})
 
