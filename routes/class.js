@@ -1,5 +1,5 @@
 import express from "express";
-import { detailClass, getListClass } from "../controllers/class";
+import { addClass, deleteClass, detailClass, editClass, getListClass } from "../controllers/class";
 
 
 const router = express.Router()
@@ -116,7 +116,7 @@ router.get("/class/:id", detailClass)
  * /api/class:
  *   post:
  *     summary: Create a Class
- *     tags: [LectureVideos]
+ *     tags: [Classes]
  *     requestBody:
  *       required: true
  *       content: 
@@ -125,81 +125,81 @@ router.get("/class/:id", detailClass)
  *             $ref: '#/components/schemas/Class'
  *     responses:
  *       200: 
- *         description: LectureVideo was successfully created
+ *         description: Class was successfully created
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/LectureVideo'
+ *               $ref: '#/components/schemas/Class'
  *       400: 
- *         description: Fail to create a LectureVideo
+ *         description: Fail to create a Class
  */
 
-router.post("/lecture-video", addLectureVideo)
+router.post("/class", addClass)
 
-// -------------------Update Lecture Video----------------------
+// -------------------Update Class----------------------
 /**
  * @swagger
- * /api/lecture-video/{id}:
+ * /api/class/{id}:
  *   put:
- *     summary: Update a LectureVideo
- *     tags: [LectureVideos]
+ *     summary: Update a Class
+ *     tags: [Classes]
  *     parameters:
  *       - in: path
  *         name: id
  *         schema:
  *           type: string
  *         required: true
- *         description: The Lecture Video id
+ *         description: The Class id
  *     requestBody:
  *       required: true
  *       content: 
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/LectureVideo'
+ *             $ref: '#/components/schemas/Class'
  *     responses:
  *       200: 
- *         description: LectureVideo was successfully updated
+ *         description: Class was successfully updated
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/LectureVideo'
+ *               $ref: '#/components/schemas/Class'
  *       400: 
- *         description: Fail to updated a LectureVideo
+ *         description: Fail to updated a Class
  */
 
-router.put("/lecture-video/:id", editLectureVideo)
+router.put("/class/:id", editClass)
 
-// -------------------Remove Lecture Video----------------------
+// -------------------Remove Class----------------------
 /**
  * @swagger
- * /api/lecture-video/{id}:
+ * /api/class/{id}:
  *   delete:
- *     summary: Remove a lecture video by id
- *     tags: [LectureVideos]
+ *     summary: Remove a Class by id
+ *     tags: [Classes]
  *     parameters:
  *       - in: path
  *         name: id
  *         schema:
  *           type: string
  *         required: true
- *         description: The Lecture Video id
+ *         description: The Class id
  *     requestBody:
  *       required: true
  *       content: 
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/LectureVideo'
+ *             $ref: '#/components/schemas/Class'
  *     responses:
  *       200: 
- *         description: Lecture Video was successfully removed
+ *         description: Class was successfully removed
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/LectureVideo'
+ *               $ref: '#/components/schemas/Class'
  *       400:
- *         description: Fail to removed a LectureVideo
+ *         description: Fail to removed a Class
  */
 
-router.delete("/lecture-video/:id", deleteLectureVideo)
+router.delete("/class/:id", deleteClass)
 
 export default router
