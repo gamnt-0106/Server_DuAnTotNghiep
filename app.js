@@ -49,6 +49,9 @@ import topicVocabulary from './routes/topicVocabulary';
 
 import rourerLectureVideo from './routes/lectureVideo';
 import grammar from './routes/grammar';
+
+//Sentences
+import sentences from './routes/sentences';
 const { Auth, LoginCredentials  } = require("two-step-auth");
 
 
@@ -135,6 +138,9 @@ app.use("/api", rourerLectureVideo )
 app.use("/api", vocabulary)
 app.use("/api", topicVocabulary)
 app.use("/api", grammar)
+
+//Sentences
+app.use("/api", sentences);
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("DB Connected"))
