@@ -55,6 +55,9 @@ const { Auth, LoginCredentials  } = require("two-step-auth");
 //-----------------Course------------------------ 
 import course from './routes/course';
 
+//-----------------Month------------------------ 
+import month from './routes/month';
+
 const options = {
   definition: {
     openapi: "3.0.0",
@@ -140,8 +143,11 @@ app.use("/api", topicVocabulary)
 app.use("/api", grammar)
 
 
-//----------------Lecture Video------------------------ 
+//----------------Course------------------------ 
 app.use("/api", course)
+
+//----------------Month------------------------ 
+app.use("/api", month)
 
 mongoose
   .connect(process.env.MONGO_URI)
