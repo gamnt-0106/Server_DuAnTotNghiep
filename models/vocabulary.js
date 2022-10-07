@@ -28,6 +28,21 @@ const vocabularySchema = new mongoose.Schema({
     audio:{
         type: String,
         // required: true
+    },
+    // Cụm từ
+    sentences:{
+        type: ObjectId,
+        ref:""
+    },
+    // Cấu trúc cụm từ
+    structureSentences:{
+        type:ObjectId,
+        ref:""
+    },
+    // Ngữ pháp
+    grammar:{
+        type: ObjectId,
+        ref:"Grammar"
     }
 }, {timestamps: true})
 
