@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const grammarSchema = mongoose.Schema({
+const grammarSchema = new mongoose.Schema({
     name:{
       type: String,
       require: true  
