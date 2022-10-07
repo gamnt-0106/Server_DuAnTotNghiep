@@ -52,6 +52,15 @@ import grammar from './routes/grammar';
 const { Auth, LoginCredentials  } = require("two-step-auth");
 
 
+//-----------------Course------------------------ 
+import course from './routes/course';
+
+//-----------------Month------------------------ 
+import month from './routes/month';
+
+//-----------------Week------------------------ 
+import week from './routes/week';
+
 const options = {
   definition: {
     openapi: "3.0.0",
@@ -135,6 +144,17 @@ app.use("/api", rourerLectureVideo )
 app.use("/api", vocabulary)
 app.use("/api", topicVocabulary)
 app.use("/api", grammar)
+
+
+//----------------Course------------------------ 
+app.use("/api", course)
+
+//----------------Month------------------------ 
+app.use("/api", month)
+
+//----------------Week------------------------ 
+app.use("/api", week)
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("DB Connected"))
