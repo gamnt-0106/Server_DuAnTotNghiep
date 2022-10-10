@@ -1,8 +1,13 @@
 import express from "express";
-import { addClass, deleteClass, detailClass, editClass, getListClass } from "../controllers/class";
+import {
+  addClass,
+  deleteClass,
+  detailClass,
+  editClass,
+  getListClass,
+} from "../controllers/class";
 
-
-const router = express.Router()
+const router = express.Router();
 
 // Mỗi thuộc tính cách nhau 2 dòng
 
@@ -16,38 +21,47 @@ const router = express.Router()
 
 // Khai báo components để tái sử dụng thuộc tính (VD: schemas, parameters,... )
 /**
- * @swagger 
+ * @swagger
  * components:
  *   schemas:
  *     Class:
  *       type: object
  *       required:
  *         - nameClass
- *         - numberOfStudent
+ *         - linkJoinClass
  *         - lever
  *       properties:
- *         _id: 
+ *         _id:
  *           type: string
  *           description: The auto-generated id of Classes
- *         nameClass: 
+ *         nameClass:
  *           type: string
  *           description: nameClass of Classes
- *         numberOfStudent: 
- *           type: Number
- *           description: numberOfStudent of Classes
- *         lever: 
+ *         linkJoinClass:
+ *           type: String
+ *           description: linkJoinClass of Classes
+ *         lever:
  *           type: string
  *           description: lever of Classes
- *         createdAt: 
+ *         userOfClass:
+ *           type: Array
+ *           description: userOfClass of Classes
+ *         createdAt:
  *           type: string
  *           description: Create Time of Classes
- *         updatedAt: 
+ *         updatedAt:
  *           type: string
  *           description: Update Time of Classes
  *       example:
  *         _id: 62e8c62b587bcad52fbaf0b7
  *         nameClass: Your friend is tall
- *         numberOfStudent: 20
+ *         linkJoinClass: link.com
+ *         userOfClass: [
+ *              {
+ *                  userId: 62e8c62b587bcad52fbaf0b7,
+ *                  timeJoinClass: 2022-08-02T06:37:31.665+00:00
+ *              }
+ *          ]
  *         lever: master
  *         createdAt: 2022-08-02T06:37:31.665+00:00
  *         updatedAt: 2022-08-15T14:13:19.886+00:00
@@ -59,9 +73,8 @@ const router = express.Router()
  *         type: string
  *       required: true
  *       description: The Class id
- * 
+ *
  * */
-
 
 // -------------------Get List Class----------------------
 /**
@@ -71,7 +84,7 @@ const router = express.Router()
  *       summary: Return the list of all Classes
  *       tags: [Classes]
  *       responses:
- *         200: 
+ *         200:
  *           description: The List of Classes
  *           content:
  *             application/json:
@@ -79,9 +92,9 @@ const router = express.Router()
  *                 type: array
  *                 items:
  *                   $ref: '#/components/schemas/Class'
- *              
+ *
  * */
-router.get("/classes", getListClass)
+router.get("/classes", getListClass);
 
 // -------------------Get Detail Class----------------------
 /**
@@ -108,7 +121,7 @@ router.get("/classes", getListClass)
  *             description: The Classes is Not found
  */
 
-router.get("/class/:id", detailClass)
+router.get("/class/:id", detailClass);
 
 // -------------------Add Class----------------------
 /**
@@ -119,22 +132,22 @@ router.get("/class/:id", detailClass)
  *     tags: [Classes]
  *     requestBody:
  *       required: true
- *       content: 
+ *       content:
  *         application/json:
  *           schema:
  *             $ref: '#/components/schemas/Class'
  *     responses:
- *       200: 
+ *       200:
  *         description: Class was successfully created
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Class'
- *       400: 
+ *       400:
  *         description: Fail to create a Class
  */
 
-router.post("/class", addClass)
+router.post("/class", addClass);
 
 // -------------------Update Class----------------------
 /**
@@ -152,22 +165,22 @@ router.post("/class", addClass)
  *         description: The Class id
  *     requestBody:
  *       required: true
- *       content: 
+ *       content:
  *         application/json:
  *           schema:
  *             $ref: '#/components/schemas/Class'
  *     responses:
- *       200: 
+ *       200:
  *         description: Class was successfully updated
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Class'
- *       400: 
+ *       400:
  *         description: Fail to updated a Class
  */
 
-router.put("/class/:id", editClass)
+router.put("/class/:id", editClass);
 
 // -------------------Remove Class----------------------
 /**
@@ -185,12 +198,12 @@ router.put("/class/:id", editClass)
  *         description: The Class id
  *     requestBody:
  *       required: true
- *       content: 
+ *       content:
  *         application/json:
  *           schema:
  *             $ref: '#/components/schemas/Class'
  *     responses:
- *       200: 
+ *       200:
  *         description: Class was successfully removed
  *         content:
  *           application/json:
@@ -200,6 +213,6 @@ router.put("/class/:id", editClass)
  *         description: Fail to removed a Class
  */
 
-router.delete("/class/:id", deleteClass)
+router.delete("/class/:id", deleteClass);
 
-export default router
+export default router;

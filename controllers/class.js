@@ -1,7 +1,12 @@
 import Classes from "../models/class";
 export const getListClass = async (req, res) => {
   try {
-    const listClass = await Classes.find().exec();
+    const listClass = await Classes.find()
+      .populate({
+        path: "userOfClass",
+        populate: { path: "userId" },
+      })
+      .exec();
     res.json(listClass);
   } catch (error) {
     res.status(400).json({ message: "Không tìm thấy Data" });
@@ -10,7 +15,10 @@ export const getListClass = async (req, res) => {
 
 export const detailClass = async (req, res) => {
   try {
-    const itemClass = await Classes.findOne({ _id: req.params.id }).exec();
+    const itemClass = await Classes.findOne({ _id: req.params.id }).populate({
+      path: "userOfClass",
+      populate: { path: "userId" },
+    }).exec();
     res.json({ class: itemClass });
   } catch (error) {
     res.status(400).json({ message: "Không tìm thấy Data" });
@@ -32,7 +40,10 @@ export const editClass = async (req, res) => {
       { _id: req.params.id },
       req.body,
       { new: true }
-    ).exec();
+    ).populate({
+      path: "userOfClass",
+      populate: { path: "userId" },
+    }).exec();
     res.json({ class: editClass });
   } catch (error) {
     res.status(400).json({ message: "Sửa thất bại" });
