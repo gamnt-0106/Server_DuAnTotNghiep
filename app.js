@@ -67,6 +67,10 @@ import month from './routes/month';
 //-----------------Week------------------------ 
 import week from './routes/week';
 
+//-----------------Day------------------------ 
+import day from './routes/day';
+
+
 const options = {
   definition: {
     openapi: "3.0.0",
@@ -165,6 +169,9 @@ app.use("/api", month)
 
 //----------------Week------------------------ 
 app.use("/api", week)
+
+//----------------Day------------------------ 
+app.use("/api", day)
 
 mongoose
   .connect(process.env.MONGO_URI)
