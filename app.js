@@ -61,6 +61,8 @@ const { Auth, LoginCredentials  } = require("two-step-auth");
 //-----------------Course------------------------ 
 import course from './routes/course';
 
+import noteCouse from './routes/noteRouter';
+
 //-----------------Month------------------------ 
 import month from './routes/month';
 
@@ -163,6 +165,8 @@ app.use("/api", sentences);
 
 //----------------Course------------------------ 
 app.use("/api", course)
+
+app.use("/api", noteCouse)
 
 //----------------Month------------------------ 
 app.use("/api", month)
