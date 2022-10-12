@@ -73,6 +73,8 @@ import week from './routes/week';
 import day from './routes/day';
 
 
+//----------------PracticeActivity---------
+import PracticeActivityRouter from './routes/practiceActivity'
 const options = {
   definition: {
     openapi: "3.0.0",
@@ -176,6 +178,9 @@ app.use("/api", week)
 
 //----------------Day------------------------ 
 app.use("/api", day)
+
+//----------------PracticeActivity-------------
+app.use('/api', PracticeActivityRouter)
 
 mongoose
   .connect(process.env.MONGO_URI)
