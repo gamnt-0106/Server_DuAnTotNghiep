@@ -20,7 +20,8 @@ export const addUserNote = async (req, res) =>{
 
 export const editUserNote = async (req, res) =>{
     try {
-        const data = await NoteCouse.findOneAndUpdate({dayId: req.params.typeId, userId : req.params.userId}, req.body, {new:true}).exec();
+        // dayId: req.params.typeId, userId : req.params.userId
+        const data = await NoteCouse.findOneAndUpdate({_id: req.params.id}, req.body, {new:true}).exec();
         res.json(data);
     } catch (error) {
         res.status(400).json({message:"Nothing"});
