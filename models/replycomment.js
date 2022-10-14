@@ -1,9 +1,11 @@
 import mongoose from 'mongoose'
-import replycomment from './replycomment';
 
-const commentSchema = new mongoose.Schema({
+const replycommentSchema = new mongoose.Schema({
     id: {
         type: Number,
+    },
+    commentId:{
+        type:String
     },
     userId: {
         type: String
@@ -44,16 +46,8 @@ const commentSchema = new mongoose.Schema({
             }
         }
     ],
-    rating: {
-        type: Number
-    },
-    reply: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref:replycomment
-        }
-    ]
+    
 }, { timestamps: true })
 
-export default mongoose.model('Comment', commentSchema);
+export default mongoose.model('ReplyComment', replycommentSchema);
 
