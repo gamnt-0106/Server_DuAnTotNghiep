@@ -12,6 +12,15 @@ export const listDay = async (req, res) => {
     }
 }
 
+export const listDayByWeek = async (req, res) => {
+    try {
+        const day = await Day.find({week: req.params.id }).exec();
+        res.json(day)
+    } catch (error) {
+        res.status(400).json({message:"Không tìm thấy"})
+    }
+}
+
 
 export const detailDay= async (req,res)=>{
     try {
