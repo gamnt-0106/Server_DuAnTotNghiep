@@ -2,7 +2,6 @@ import Day from "../models/day";
 
 
 
-
 export const listDay = async (req, res) => {
     try {
         const day = await Day.find().exec();
@@ -20,6 +19,7 @@ export const listDayByWeek = async (req, res) => {
         res.status(400).json({message:"Không tìm thấy"})
     }
 }
+
 
 
 export const detailDay= async (req,res)=>{
