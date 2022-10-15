@@ -10,6 +10,15 @@ export const getListPracticeActivity = async (req, res) => {
   }
 };
 
+export const getListPracticeActivityByDay = async (req, res) => {
+  try {
+    const listpracticeActivity = await PracticeActivity.find({day: req.params.id }).exec();
+    res.json(listpracticeActivity);
+  } catch (error) {
+    res.status(400).json({ message: "Không tìm thấy Data" });
+  }
+};
+
 export const detailPracticeActivity = async (req, res) => {
   try {
     const itemPracticeActivity = await PracticeActivity.findOne({ _id: req.params.id }).populate('day').exec();
