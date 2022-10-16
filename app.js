@@ -74,6 +74,9 @@ import day from './routes/day';
 
 
 //----------------PracticeActivity---------
+
+//-----------------LearningProgress------------------------ 
+import LearningProgress from './routes/learningProgress';
 import PracticeActivityRouter from './routes/practiceActivity'
 const options = {
   definition: {
@@ -178,6 +181,9 @@ app.use("/api", week)
 
 //----------------Day------------------------ 
 app.use("/api", day)
+
+//----------------LearningProgress------------------------ 
+app.use("/api", LearningProgress)
 
 //----------------PracticeActivity-------------
 app.use('/api', PracticeActivityRouter)
