@@ -31,10 +31,6 @@ const userSchema = new mongoose.Schema(
       type: Number,
       default: 1,
     },
-    colorImage: {
-      type: String,
-      default: "",
-    },
     role: {
       type: String,
       default: "0",
