@@ -75,6 +75,10 @@ import day from './routes/day';
 
 //----------------PracticeActivity---------
 import PracticeActivityRouter from './routes/practiceActivity'
+
+//----------------GoogleSpeech---------
+import googleSpeech from './routes/googleSpeech';
+
 const options = {
   definition: {
     openapi: "3.0.0",
@@ -181,6 +185,9 @@ app.use("/api", day)
 
 //----------------PracticeActivity-------------
 app.use('/api', PracticeActivityRouter)
+
+//----------------GoogleSpeech-------------
+app.use('/api', googleSpeech)
 
 mongoose
   .connect(process.env.MONGO_URI)
