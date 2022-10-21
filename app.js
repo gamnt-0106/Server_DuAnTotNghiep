@@ -215,9 +215,13 @@ mongoose
 
 const port = process.env.PORT || 8000
 
-const server = require('http').createServer(app);
+// const server = require('http').createServer(app);
 
-const io = require('socket.io')(server);
+// const io = require('socket.io')(server);
+const socketIO = require("socket.io")
+
+const server = app.listen(port, () => console.log(`Application up and running on ${port}`))
+const io = socketIO(server);
 
 // =========================== SOCKET.IO ================================ //
 
@@ -304,7 +308,7 @@ const request = {
   interimResults: true, // If you want interim results, set this to true
 };
 
-app.listen(port, () => {
-    console.log("Server is running on port 8000");
-});
+// app.listen(port, () => {
+//     console.log("Server is running on port 8000");
+// });
 
