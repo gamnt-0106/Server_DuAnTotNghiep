@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+const {ObjectId} = mongoose
 const grammarSchema = new mongoose.Schema({
     name:{
       type: String,
@@ -7,14 +7,20 @@ const grammarSchema = new mongoose.Schema({
     },
     image:{
         type:String,
-        require: true
+        // require: true
+        default:""
     },
-    example:{
+    description:{
         type: String,
         require: true
     },
-    note:{
-        type: String,
+    summary:{
+        type:String,
+        default:""
+    },
+    dayId:{
+        type:ObjectId,
+        ref:"Day"
     }
 },{timestamps:true});
 
