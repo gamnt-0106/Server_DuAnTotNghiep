@@ -5,6 +5,7 @@ import {
   detailClass,
   editClass,
   getListClass,
+  joinClass,
 } from "../controllers/class";
 
 const router = express.Router();
@@ -28,7 +29,6 @@ const router = express.Router();
  *       type: object
  *       required:
  *         - nameClass
- *         - linkJoinClass
  *         - lever
  *       properties:
  *         _id:
@@ -214,5 +214,39 @@ router.put("/class/:id", editClass);
  */
 
 router.delete("/class/:id", deleteClass);
+
+
+// -------------------Join Class----------------------
+/**
+ * @swagger
+ * /api/join-class?userId={userId}&link={link}:
+ *   get:
+ *     summary: Join a Class by link
+ *     tags: [Classes]
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The Class userId
+ *       - in: path
+ *         name: link
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The Class link
+ *     responses:
+ *       200:
+ *         description: Class was successfully join
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Class'
+ *       400:
+ *         description: Fail to join a Class
+ */
+
+ router.get("/join-class", joinClass);
 
 export default router;
