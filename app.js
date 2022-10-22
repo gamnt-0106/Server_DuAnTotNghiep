@@ -71,6 +71,7 @@ import week from './routes/week';
 
 //-----------------Day------------------------ 
 import day from './routes/day';
+import routeReplyComment from './routes/replycomment';
 
 
 //----------------PracticeActivity---------
@@ -122,6 +123,8 @@ app.use("/api", checkAuth, routeAuth);
 app.use("/api", checkAuth, routeCategory);
 app.use("/api", routeContact);
 app.use("/api", routeComment);
+app.use("/api", routeReplyComment);
+
 
 
 
