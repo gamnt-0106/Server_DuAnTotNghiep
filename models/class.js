@@ -1,5 +1,8 @@
 import mongoose from 'mongoose'
 const { ObjectId } = mongoose
+const randomLeft = (Math.random() + 1).toString(36).substring(6);
+const randomRight = (Math.random() + 1).toString(36).substring(6);
+const linkJoin = `${randomLeft}-${randomRight}`
 const classSchema = new mongoose.Schema({
     nameClass:{
         type: String,
@@ -22,7 +25,8 @@ const classSchema = new mongoose.Schema({
         }
     ],
     linkJoinClass: {
-        type: String
+        type: String,
+        default: linkJoin
     }
     
 }, {timestamps: true})
