@@ -10,11 +10,15 @@ const historySchema = new mongoose.Schema({
         type: ObjectId,
         ref: "PracticeActivity"
     },
-    // score:{
-    //     type: Number,
-    //     required: true
-    // },
-    totalPoint:{
+    learningProgress:{
+      type: ObjectId,
+        ref: "PracticeActivity"
+    },
+    score:{
+        type: Number,
+        required: true
+    },
+    totalScore:{
         type: Number,
         required: true
     },

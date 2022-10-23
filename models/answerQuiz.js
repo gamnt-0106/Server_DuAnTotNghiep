@@ -1,20 +1,31 @@
 import mongoose from "mongoose";
-const { ObjectId } = mongoose
+const { ObjectId } = mongoose;
 
-const answerQuizSchema = new mongoose.Schema({
-    quiz:{
-        // ObjectId
-        type: ObjectId,
-        ref: "Quiz"
+const answerQuizSchema = new mongoose.Schema(
+  {
+    quiz: {
+      // ObjectId
+      type: ObjectId,
+      ref: "Quiz",
     },
-    answer:{
-        type: String,
-        required: true
+    answer: {
+      type: String,
+      required: true,
     },
-    isCorrect:{
-        type: Number,
-        required: true
+    isCorrect: {
+      type: Boolean,
+      required: true,
+    },
+    wordMeaning: {
+      type: String,
+      default: "",
+    },
+    explainAnswer:{
+      type: String,
+      default: "",
     }
-},{timestamps:true})
+  },
+  { timestamps: true }
+);
 
-export default mongoose.model("AnswerQuiz",answerQuizSchema)
+export default mongoose.model("AnswerQuiz", answerQuizSchema);

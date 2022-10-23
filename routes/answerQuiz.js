@@ -1,9 +1,11 @@
 import express from "express";
-import { addAnswerQuiz, deleteAnswerQuiz, detailAnswerQuiz, editAnswerQuiz, listAnswerQuiz } from "../controllers/answerQuiz";
+import { addAnswerQuiz, deleteAnswerQuiz, detailAnswerQuiz, editAnswerQuiz, getAnswerByIdQuiz, listAnswerQuiz } from "../controllers/answerQuiz";
 
 
 
 const router = express.Router()
+
+router.get("/answerQuiz/:quiz/quiz", getAnswerByIdQuiz )
 
 // ------ GET ---------------
 
