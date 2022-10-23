@@ -12,11 +12,11 @@ const quizSchema = new mongoose.Schema({
     },
     image:{
         type: String,
-        required: true
+        default: ""
     },
     timeLimit:{
         type: Number,
-        required: true
+        default: 0
     },
     type:{
         type: Number,

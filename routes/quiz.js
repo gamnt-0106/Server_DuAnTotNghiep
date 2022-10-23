@@ -1,8 +1,11 @@
 import express from "express";
-import { addQuiz, deleteQuiz, detailQuiz, editQuiz, listQuiz } from "../controllers/quiz";
+import { addQuiz, deleteQuiz, detailQuiz, editQuiz, getExerciseQuizByIdPracticeActivity, listQuiz } from "../controllers/quiz";
 
 
 const router = express.Router()
+
+
+router.get("/quizs/exercise/:practiceActivity", getExerciseQuizByIdPracticeActivity)
 
 // Mỗi thuộc tính cách nhau 2 dòng
 
