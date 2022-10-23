@@ -76,6 +76,13 @@ import routeReplyComment from './routes/replycomment';
 
 //----------------PracticeActivity---------
 import PracticeActivityRouter from './routes/practiceActivity'
+
+//----------------GoogleSpeech---------
+import googleSpeech from './routes/googleSpeech';
+
+const speech = require('@google-cloud/speech');
+const speechClient = new speech.SpeechClient()
+
 const options = {
   definition: {
     openapi: "3.0.0",
@@ -185,6 +192,9 @@ app.use("/api", day)
 //----------------PracticeActivity-------------
 app.use('/api', PracticeActivityRouter)
 
+//----------------GoogleSpeech-------------
+app.use('/api', googleSpeech)
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("DB Connected"))
@@ -208,9 +218,100 @@ mongoose
 
 const port = process.env.PORT || 8000
 
+// const server = require('http').createServer(app);
 
+// const io = require('socket.io')(server);
+const socketIO = require("socket.io")
 
-app.listen(port, () => {
-    console.log("Server is running on port 8000");
+const server = app.listen(port, () => console.log(`Application up and running on ${port}`))
+const io = socketIO(server);
+
+// =========================== SOCKET.IO ================================ //
+
+io.on('connection', function (client) {
+  console.log('Client Connected to server');
+  let recognizeStream = null;
+
+  client.on('join', function () {
+    client.emit('messages', 'Socket Connected to Server');
+  });
+
+  client.on('messages', function (data) {
+    client.emit('broad', data);
+    console.log("broad",data);
+  });
+
+  client.on('startGoogleCloudStream', function (data) {
+    startRecognitionStream(this, data);
+    console.log("data start",data);
+  });
+
+  client.on('endGoogleCloudStream', function () {
+    stopRecognitionStream();
+    console.log("data stop");
+  });
+
+  client.on('binaryData', function (data) {
+    // console.log(data); //log binary data
+    if (recognizeStream !== null) {
+      recognizeStream.write(data);
+    }
+  });
+
+  function startRecognitionStream(client) {
+    recognizeStream = speechClient
+      .streamingRecognize(request)
+      .on('error', console.error)
+      .on('data', (data) => {
+        process.stdout.write(
+          data.results[0] && data.results[0].alternatives[0]
+            ? `Transcription: ${data.results[0].alternatives[0].transcript}\n`
+            : '\n\nReached transcription time limit, press Ctrl+C\n'
+        );
+        client.emit('speechData', data);
+
+        // if end of utterance, let's restart stream
+        // this is a small hack. After 65 seconds of silence, the stream will still throw an error for speech length limit
+        if (data.results[0] && data.results[0].isFinal) {
+          stopRecognitionStream();
+          startRecognitionStream(client);
+          console.log('restarted stream serverside');
+        }
+      });
+  }
+
+  function stopRecognitionStream() {
+    if (recognizeStream) {
+      recognizeStream.end();
+    }
+    recognizeStream = null;
+  }
 });
+
+// =========================== GOOGLE CLOUD SETTINGS ================================ //
+
+// The encoding of the audio file, e.g. 'LINEAR16'
+// The sample rate of the audio file in hertz, e.g. 16000
+// The BCP-47 language code to use, e.g. 'en-US'
+const encoding = 'LINEAR16';
+const sampleRateHertz = 16000;
+const languageCode = 'en-US'; //en-US
+
+const request = {
+  config: {
+    encoding: encoding,
+    sampleRateHertz: sampleRateHertz,
+    languageCode: languageCode,
+    profanityFilter: false,
+    enableWordTimeOffsets: true,
+    // speechContexts: [{
+    //     phrases: ["hoful","shwazil"]
+    //    }] // add your own speech context for better recognition
+  },
+  interimResults: true, // If you want interim results, set this to true
+};
+
+// app.listen(port, () => {
+//     console.log("Server is running on port 8000");
+// });
 
