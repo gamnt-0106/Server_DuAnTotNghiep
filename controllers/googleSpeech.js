@@ -1,56 +1,116 @@
-const recorder = require('node-record-lpcm16');
-// import { record } from "node-record-lpcm16"
-// import { SpeechClient } from "@google-cloud/speech"
-// Imports the Google Cloud client library
 const speech = require('@google-cloud/speech');
+const fs = require('fs');
+// Instantiates a client
+const client = new speech.SpeechClient();
 
-export const ggSpeech = async () => {
-    // Creates a client
-    // const client = new SpeechClient();
-    const client = new speech.SpeechClient();
 
-    /**
-     * TODO(developer): Uncomment the following lines before running the sample.
-     */
-    const encoding = 'Encoding of the audio file, e.g. LINEAR16';
-    const sampleRateHertz = 16000;
-    const languageCode = 'BCP-47 language code, e.g. en-US';
 
-    const request = {
-        config: {
-            encoding: encoding,
-            sampleRateHertz: sampleRateHertz,
-            languageCode: languageCode,
-        },
-        interimResults: false, // If you want interim results, set this to true
+export const transcribeSpeech = async (req, res) => {
+
+
+
+    // The path to the remote LINEAR16 file
+    const gcsUri = 'gs://cloud-samples-data/speech/brooklyn_bridge.raw';
+    // const gcsUri = 'gs://vian_english/audio-files/play_sound.mp3';
+
+    const audio = {
+        uri: gcsUri,
     };
 
-    // Create a recognize stream
-    const recognizeStream = client
-        .streamingRecognize(request)
-        .on('error', console.error)
-        .on('data', data =>
-            process.stdout.write(
-                data.results[0] && data.results[0].alternatives[0]
-                    ? `Transcription: ${data.results[0].alternatives[0].transcript}\n`
-                    : '\n\nReached transcription time limit, press Ctrl+C\n'
-            )
-        );
+    // The audio file's encoding, sample rate in hertz, and BCP-47 language code
+    const config = {
+        encoding: 'LINEAR16',
+        // encoding: 'MP3',
+        sampleRateHertz: 16000,
+        languageCode: 'en-US',
+    };
 
-    // Start recording and send the microphone input to the Speech API.
-    // Ensure SoX is installed, see https://www.npmjs.com/package/node-record-lpcm16#dependencies
-    recorder
-        .record({
-            sampleRateHertz: sampleRateHertz,
-            threshold: 0,
-            // Other options, see https://www.npmjs.com/package/node-record-lpcm16#options
-            verbose: false,
-            recordProgram: 'rec', // Try also "arecord" or "sox"
-            silence: '10.0',
-        })
-        .stream()
-        .on('error', console.error)
-        .pipe(recognizeStream);
+    const request = {
+        audio: audio,
+        config: config,
+    };
 
-    console.log('Listening, press Ctrl+C to stop.');
+    // Detects speech in the audio file
+    const [response] = await client.recognize(request);
+    const transcription = response.results
+        .map(result => result.alternatives[0].transcript)
+        .join('\n');
+
+    const flag = response.results
+    const flag2 = response
+    const flag3 = response
+    console.log(`flag2`, flag2);
+    console.log(`flag: ${flag}`);
+    console.log(`Transcription: ${transcription}`);
+    res.json({ transcription, flag, flag2 })
+
+        //---------------
+    // const filename = 'gs://cloud-samples-data/speech/brooklyn_bridge.raw';
+    // // Số lượng kênh có trong âm thanh của bạn. Nếu không đúng sẽ raise error
+    // const audioChannelCount = 2;
+    // // Khai báo encoding
+    // const encoding = 'FLAC';
+    // // Tỉ lệ mẫu tính bằng Hertz của audio, nêú không đúng sẽ raise error
+    // const sampleRateHertz = 44100;
+    // // Khai báo code ngôn ngữ cần nhận dạng
+    // const languageCode = 'en-US';
+
+    // const config = {
+    //     audioChannelCount: audioChannelCount,
+    //     encoding: encoding,
+    //     sampleRateHertz: sampleRateHertz,
+    //     languageCode: languageCode,
+    // };
+    // const audio = {
+    //     content: fs.readFileSync(filename).toString('base64'),
+    // };
+
+    // const request = {
+    //     config: config,
+    //     audio: audio,
+    // };
+
+    // // Phát hiện giọng nói trong audio
+    // const [response] = await client.recognize(request);
+    // const transcription = response.results
+    //     .map(result => result.alternatives[0].transcript)
+    //     .join('\n');
+    // console.log('Transcription: ', transcription);
+
+
+
+    // try {
+    //     const audio = {
+    //         uri: gcsUri,
+    //     };
+
+    //     // The audio file's encoding, sample rate in hertz, and BCP-47 language code
+    //     const config = {
+    //         encoding: 'LINEAR16',
+    //         sampleRateHertz: 16000,
+    //         languageCode: 'en-US',
+    //     };
+
+    //     const request = {
+    //         audio: audio,
+    //         config: config,
+    //     };
+
+    //     // Detects speech in the audio file
+    //     const [response] = await client.recognize(request);
+    //     const transcription = response.results
+    //         .map(result => result.alternatives[0].transcript)
+    //         .join('\n');
+
+    //     const flag = response.results
+    //     const flag2 = response
+    //     const flag3 = response
+    //     console.log(`flag2`, flag2);
+    //     console.log(`flag: ${flag}`);
+    //     console.log(`Transcription: ${transcription}`);
+    //     res.json({ transcription })
+    // } catch (error) {
+    //     res.status(400).json({ message: "Gặp lỗi khi đang chuyển âm thanh sang text" })
+    // }
 }
+
