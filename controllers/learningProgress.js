@@ -1,11 +1,29 @@
 import LearningProgress from "../models/learningProgress";
+
+
+
 export const getListLearningProgress = async (req, res) => {
   try {
-    const list = await LearningProgress.find()
+    const learningProgress = await LearningProgress.find()
       .populate("user")
       .populate("day")
       .exec();
-    res.json(list);
+    res.json(learningProgress);
+  } catch (error) {
+    res.status(400).json({ message: "Không tìm thấy Data" });
+  }
+};
+
+export const getProgressByUserAndDay = async (req, res) => {
+  try {
+    const learningProgress = await LearningProgress.findOne({
+      day: req.params.dayId,
+      user: req.params.userId
+    })
+      .populate("user")
+      .populate("day")
+      .exec();
+    res.json( learningProgress);
   } catch (error) {
     res.status(400).json({ message: "Không tìm thấy Data" });
   }
@@ -13,13 +31,13 @@ export const getListLearningProgress = async (req, res) => {
 
 export const detailLearningProgress = async (req, res) => {
   try {
-    const itemLearningProgress = await LearningProgress.findOne({
+    const learningProgress = await LearningProgress.findOne({
       _id: req.params.id,
     })
       .populate("user")
       .populate("day")
       .exec();
-    res.json({ learningProgress: itemLearningProgress });
+    res.json(learningProgress);
   } catch (error) {
     res.status(400).json({ message: "Không tìm thấy Data" });
   }
@@ -28,7 +46,7 @@ export const detailLearningProgress = async (req, res) => {
 export const addLearningProgress = async (req, res) => {
   try {
     const learningProgress = await LearningProgress(req.body).save();
-    res.json({ learningProgress: learningProgress });
+    res.json(learningProgress);
   } catch (error) {
     res.status(400).json({ message: "Thêm thất bại" });
   }
@@ -36,7 +54,7 @@ export const addLearningProgress = async (req, res) => {
 
 export const editLearningProgress = async (req, res) => {
   try {
-    const editLearningProgress = await LearningProgress.findOneAndUpdate(
+    const learningProgress = await LearningProgress.findOneAndUpdate(
       { _id: req.params.id },
       req.body,
       { new: true }
@@ -44,7 +62,7 @@ export const editLearningProgress = async (req, res) => {
       .populate("user")
       .populate("day")
       .exec();
-    res.json({ learningProgress: editLearningProgress });
+    res.json(learningProgress);
   } catch (error) {
     res.status(400).json({ message: "Sửa thất bại" });
   }
@@ -52,10 +70,10 @@ export const editLearningProgress = async (req, res) => {
 
 export const deleteLearningProgress = async (req, res) => {
   try {
-    const deleteLearningProgress = await LearningProgress.findOneAndDelete({
+    const learningProgress = await LearningProgress.findOneAndDelete({
       _id: req.params.id,
     }).exec();
-    res.json({ learningProgress: deleteLearningProgress });
+    res.json(learningProgress);
   } catch (error) {
     res.status(400).json({ message: "Xóa thất bại" });
   }
