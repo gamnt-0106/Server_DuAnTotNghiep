@@ -21,7 +21,8 @@ const learningProgressSchema = new mongoose.Schema({
         default: false
     },
     order: {
-        type: String,
+        type: Number,
+        required: true
     },
     day: {
         type: ObjectId,

@@ -19,7 +19,7 @@ const quizSchema = new mongoose.Schema({
         default: 0
     },
     type:{
-        type: Number,
+        type: String,
         required: true
     },
     meaning:{
