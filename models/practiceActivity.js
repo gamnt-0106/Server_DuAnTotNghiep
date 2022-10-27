@@ -11,8 +11,7 @@ const practiceActivitySchema = new mongoose.Schema({
         required: true
     },
     type:{
-        type: Number,
-        default: 0,
+        type: String,
         required: true
     }
 

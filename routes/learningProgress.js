@@ -1,5 +1,5 @@
 import express from "express";
-import { addLearningProgress, deleteLearningProgress, detailLearningProgress, editLearningProgress, getListLearningProgress } from "../controllers/learningProgress";
+import { addLearningProgress, deleteLearningProgress, detailLearningProgress, editLearningProgress, getListLearningProgress, getProgressByUserAndDay } from "../controllers/learningProgress";
 
 
 const router = express.Router();
@@ -95,7 +95,7 @@ const router = express.Router();
 // -------------------Get List LearningProgress----------------------
 /**
  * @swagger
- *   /api/learning-progress:
+ *   /api/learningProgress:
  *     get:
  *       summary: Return the list of all LearningProgress
  *       tags: [LearningProgress]
@@ -110,12 +110,48 @@ const router = express.Router();
  *                   $ref: '#/components/schemas/LearningProgress'
  *
  * */
-router.get("/learning-progress", getListLearningProgress);
+router.get("/learningProgress", getListLearningProgress);
+
+//
+// -------------------Get Detail LearningProgress By User And Day----------------------
+/**
+ * @swagger
+ *   /api/learningProgress/{dayId}&{userId}:
+ *     get:
+ *       summary: Get LearningProgress by dayId & userId
+ *       tags: [LearningProgress]
+ *       parameters:
+ *           - in: path
+ *             name: dayId
+ *             schema:
+ *               type: string
+ *             required: true
+ *             description: The Day id
+ *           - in: path
+ *             name: userId
+ *             schema:
+ *               type: string
+ *             required: true
+ *             description: The User id
+ *       responses:
+ *           200:
+ *             description: The LearningProgress detail by Day & User
+ *             contents:
+ *               application/json:
+ *                 schema:
+ *                   $ref: '#/components/schemas/LearningProgress'
+ *           400:
+ *             description: The LearningProgress is Not found
+ */
+
+router.get("/learningProgress/:dayId&:userId", getProgressByUserAndDay);
+//
+
 
 // -------------------Get Detail LearningProgress----------------------
 /**
  * @swagger
- *   /api/learning-progress/{id}:
+ *   /api/learningProgress/{id}:
  *     get:
  *       summary: Get LearningProgress by id
  *       tags: [LearningProgress]
@@ -137,12 +173,12 @@ router.get("/learning-progress", getListLearningProgress);
  *             description: The LearningProgress is Not found
  */
 
-router.get("/learning-progress/:id", detailLearningProgress);
+router.get("/learningProgress/:id", detailLearningProgress);
 
 // -------------------Add LearningProgress----------------------
 /**
  * @swagger
- * /api/learning-progress:
+ * /api/learningProgress:
  *   post:
  *     summary: Create a LearningProgress
  *     tags: [LearningProgress]
@@ -163,12 +199,12 @@ router.get("/learning-progress/:id", detailLearningProgress);
  *         description: Fail to create a LearningProgress
  */
 
-router.post("/learning-progress", addLearningProgress);
+router.post("/learningProgress", addLearningProgress);
 
 // -------------------Update LearningProgress----------------------
 /**
  * @swagger
- * /api/learning-progress/{id}:
+ * /api/learningProgress/{id}:
  *   put:
  *     summary: Update a LearningProgress
  *     tags: [LearningProgress]
@@ -196,12 +232,12 @@ router.post("/learning-progress", addLearningProgress);
  *         description: Fail to updated a LearningProgress
  */
 
-router.put("/learning-progress/:id", editLearningProgress);
+router.put("/learningProgress/:id", editLearningProgress);
 
 // -------------------Remove LearningProgress----------------------
 /**
  * @swagger
- * /api/learning-progress/{id}:
+ * /api/learningProgress/{id}:
  *   delete:
  *     summary: Remove a LearningProgress by id
  *     tags: [LearningProgress]
@@ -223,7 +259,7 @@ router.put("/learning-progress/:id", editLearningProgress);
  *         description: Fail to removed a LearningProgress
  */
 
-router.delete("/learning-progress/:id", deleteLearningProgress);
+router.delete("/learningProgress/:id", deleteLearningProgress);
 
 
 export default router;
