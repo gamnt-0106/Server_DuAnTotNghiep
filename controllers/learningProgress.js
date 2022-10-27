@@ -23,7 +23,7 @@ export const getProgressByUserAndDay = async (req, res) => {
       .populate("user")
       .populate("day")
       .exec();
-    res.json( learningProgress);
+    res.json(learningProgress);
   } catch (error) {
     res.status(400).json({ message: "Không tìm thấy Data" });
   }
