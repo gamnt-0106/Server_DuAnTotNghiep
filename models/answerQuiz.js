@@ -13,8 +13,8 @@ const answerQuizSchema = new mongoose.Schema(
       required: true,
     },
     isCorrect: {
-      type: Number,
-      required: true,
+      type: Boolean,
+      // required: true,
     },
     wordMeaning: {
       type: String,
