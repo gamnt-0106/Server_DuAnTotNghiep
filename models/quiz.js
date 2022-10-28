@@ -10,6 +10,9 @@ const quizSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    questionAfter:{
+      type: String,
+    },
     image:{
         type: String,
         default: ""

@@ -14,7 +14,7 @@ const answerQuizSchema = new mongoose.Schema(
     },
     isCorrect: {
       type: Boolean,
-      required: true,
+      // required: true,
     },
     wordMeaning: {
       type: String,

@@ -9,6 +9,15 @@ export const getlistSentence = async (req, res) => {
     }
 } 
 
+export const getlistSentenceByIdActivity = async (req, res) => {
+  try {
+      const data = await Sentences.find({practiceActivity: req.params.id}).exec();
+      res.json(data)
+  } catch (error) {
+      res.status(400).json({message:"Lỗi"})
+  }
+} 
+
 export const addSentence = async (req, res) => {
     try {
         const data = await Sentences(req.body).save();
