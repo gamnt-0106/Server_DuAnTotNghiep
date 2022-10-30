@@ -1,5 +1,5 @@
 import express from "express";
-import { addLearningProgress, deleteLearningProgress, detailLearningProgress, editLearningProgress, getListLearningProgress, getProgressByUserAndDay } from "../controllers/learningProgress";
+import { addLearningProgress, deleteLearningProgress, detailLearningProgress, editLearningProgress, getListLearningProgress, getListProgressByUser, getProgressByUserAndDay } from "../controllers/learningProgress";
 
 
 const router = express.Router();
@@ -147,6 +147,32 @@ router.get("/learningProgress", getListLearningProgress);
 router.get("/learningProgress/:dayId&:userId", getProgressByUserAndDay);
 //
 
+// -------------------Get Detail LearningProgress----------------------
+/**
+ * @swagger
+ *   /api/learningProgress/{userId}:
+ *     get:
+ *       summary: Get List LearningProgress by userId
+ *       tags: [LearningProgress]
+ *       parameters:
+ *           - in: path
+ *             name: userId
+ *             schema:
+ *               type: string
+ *             required: true
+ *             description: The User Id
+ *       responses:
+ *           200:
+ *             description: Get List LearningProgress by userId
+ *             contents:
+ *               application/json:
+ *                 schema:
+ *                   $ref: '#/components/schemas/LearningProgress'
+ *           400:
+ *             description: The List LearningProgress by userId is Not found
+ */
+
+ router.get("/learningProgress/:userId", getListProgressByUser);
 
 // -------------------Get Detail LearningProgress----------------------
 /**

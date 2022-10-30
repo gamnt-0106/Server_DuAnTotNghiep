@@ -26,11 +26,11 @@ export const getListPracticeActivityByDay = async (req, res) => {
 
 export const detailPracticeActivity = async (req, res) => {
   try {
-    const itemPracticeActivity = await PracticeActivity.findOne({ _id: req.params.id }).populate('day').exec();
+    const itemPracticeActivity = await PracticeActivity.findOne({ _id: req.params.activityId }).populate('day').exec();
     const quizs = await Quiz.find({practiceActivity: itemPracticeActivity._id}).populate("practiceActivity").exec()
     // const speak = await Speak.find({practiceActivity: day._id}).populate("practiceActivity").exec()
     const listenWrite = await ListenWrite.find({practiceActivity: itemPracticeActivity._id}).populate("practiceActivity").exec()
-    const history = await History.find({practiceActivity: itemPracticeActivity, user:"62c853c16948a16fbde3b43e"}).populate("user").exec()
+    const history = await History.find({practiceActivity: itemPracticeActivity, user:req.params.userId}).populate("user").exec()
     res.json({itemPracticeActivity, quizs, listenWrite, history})
     // res.json({ PracticeActivity: itemPracticeActivity });
   } catch (error) {

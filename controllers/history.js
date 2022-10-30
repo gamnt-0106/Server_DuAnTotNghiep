@@ -11,6 +11,15 @@ export const listHistory = async (req,res)=>{
     }
 }
 
+export const listHistoryByUser = async (req,res)=>{
+    try {
+        const history = await History.find({user: req.params.userId}).exec()
+        res.json(history)
+    } catch (error) {
+        res.status(400).json({message:"Không tìm thấy Data"})
+    }
+}
+
 export const detailHistoryByUserActivity = async (req,res)=>{
     try {
         const history = await History.findOne({user: req.params.userId, practiceActivity: req.params.activityId}).populate("practiceActivity").exec()
