@@ -13,8 +13,5 @@ routeAuth.put('/users/:id',updateUser);
 routeAuth.delete('/users/:id',deleteUser);
 routeAuth.get('/users/currentUser/current', getCurrentUser);
 
-
-
- router.get("/join-class", joinClass);
 export default routeAuth;
 

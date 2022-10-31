@@ -1,17 +1,20 @@
-import  express  from "express"
-import { addCategory, detailCategory, editCategory, getCategoryById, listCategories, removeCategory } from "../controllers/category";
+import express from "express";
+import {
+  addCategory,
+  detailCategory,
+  editCategory,
+  getCategoryById,
+  listCategories,
+  removeCategory,
+} from "../controllers/category";
 import { userById } from "../controllers/user";
 import { isAdmin, isAuth, requiredSignin } from "../midlerware/checkAuth";
 
-
 const routeCategory = express.Router();
 
-routeCategory.post('/categories/:userId', addCategory);
-routeCategory.put('/categories/:id', editCategory);
-routeCategory.delete('/categories/:id', removeCategory);
-routeCategory.get('/categories/:id', getCategoryById);
+routeCategory.get("/categories/:id", getCategoryById);
 
-routeCategory.param("userId", userById)
+routeCategory.param("userId", userById);
 // Tag (mục) của router
 /**
  * @swagger
@@ -80,7 +83,7 @@ routeCategory.param("userId", userById)
  *                   $ref: '#/components/schemas/Category'
  *
  * */
- routeCategory.get('/categories', listCategories);
+routeCategory.get("/categories", listCategories);
 
 // -------------------Get Detail Category----------------------
 /**
@@ -107,130 +110,105 @@ routeCategory.param("userId", userById)
  *             description: The Categoryes is Not found
  */
 
-routeCategory.get('/categories/:id', detailCategory);
+routeCategory.get("/categories/:id", detailCategory);
 
 // -------------------Add Category----------------------
 /**
  * @swagger
- * /api/class:
+ * /api/categories/{userId}:
  *   post:
  *     summary: Create a Class
- *     tags: [Classes]
+ *     tags: [Categories]
+ *     parameters:
+ *           - in: path
+ *             name: userId
+ *             schema:
+ *               type: string
+ *             required: true
+ *             description: The Categoryes UserId
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Class'
+ *             $ref: '#/components/schemas/Category'
  *     responses:
  *       200:
- *         description: Class was successfully created
+ *         description: Category was successfully created
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Class'
+ *               $ref: '#/components/schemas/Category'
  *       400:
- *         description: Fail to create a Class
+ *         description: Fail to create a Category
  */
 
-router.post("/class", addClass);
+routeCategory.post("/categories/:userId", addCategory);
 
-// -------------------Update Class----------------------
+// -------------------Update Category----------------------
 /**
  * @swagger
- * /api/class/{id}:
+ * /api/categories/{id}:
  *   put:
- *     summary: Update a Class
- *     tags: [Classes]
+ *     summary: Update a Categories
+ *     tags: [Categories]
  *     parameters:
  *       - in: path
  *         name: id
  *         schema:
  *           type: string
  *         required: true
- *         description: The Class id
+ *         description: The Category id
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Class'
+ *             $ref: '#/components/schemas/Category'
  *     responses:
  *       200:
- *         description: Class was successfully updated
+ *         description: Category was successfully updated
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Class'
+ *               $ref: '#/components/schemas/Category'
  *       400:
- *         description: Fail to updated a Class
+ *         description: Fail to updated a Category
  */
 
-router.put("/class/:id", editClass);
+routeCategory.put("/categories/:id", editCategory);
 
-// -------------------Remove Class----------------------
+// -------------------Remove Category----------------------
 /**
  * @swagger
- * /api/class/{id}:
+ * /api/categories/{id}:
  *   delete:
- *     summary: Remove a Class by id
- *     tags: [Classes]
+ *     summary: Remove a Category by id
+ *     tags: [Categories]
  *     parameters:
  *       - in: path
  *         name: id
  *         schema:
  *           type: string
  *         required: true
- *         description: The Class id
+ *         description: The Category id
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Class'
+ *             $ref: '#/components/schemas/Category'
  *     responses:
  *       200:
- *         description: Class was successfully removed
+ *         description: Category was successfully removed
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Class'
+ *               $ref: '#/components/schemas/Category'
  *       400:
- *         description: Fail to removed a Class
+ *         description: Fail to removed a Category
  */
 
-router.delete("/class/:id", deleteClass);
-
-
-// -------------------Join Class----------------------
-/**
- * @swagger
- * /api/join-class?userId={userId}&link={link}:
- *   get:
- *     summary: Join a Class by link
- *     tags: [Classes]
- *     parameters:
- *       - in: path
- *         name: userId
- *         schema:
- *           type: string
- *         required: true
- *         description: The Class userId
- *       - in: path
- *         name: link
- *         schema:
- *           type: string
- *         required: true
- *         description: The Class link
- *     responses:
- *       200:
- *         description: Class was successfully join
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Class'
- *       400:
- *         description: Fail to join a Class
- */
+routeCategory.delete("/categories/:id", removeCategory);
 
 export default routeCategory;
