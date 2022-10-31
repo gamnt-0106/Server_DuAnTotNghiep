@@ -4,13 +4,6 @@ import { addComment, editComment, getCommentById, listComment, removeComment } f
 
 const routeComment = express.Router();
 
-
-
-
-
-
-
-
 // Mỗi thuộc tính cách nhau 2 dòng
 
 // Tag (mục) của router
