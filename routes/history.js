@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.get("/history", listHistory )
 router.get("/history/:id", detailHistory )
-router.get("/history/:userId", listHistoryByUser); // Lấy list history theo user
+router.get("/history/user/:userId", listHistoryByUser); // Lấy list history theo user
 router.get("/history/:activityId&:userId", detailHistoryByUserActivity); // Lấy detail history theo activity và user
 router.post("/history", addHistory )
 router.put("/history/:id", editHistory )

@@ -19,6 +19,7 @@ export const getListProgressByUser = async (req, res) => {
     const learningProgress = await LearningProgress.find({
       user: req.params.userId
     })
+    .populate("day")
       .populate("user")
       .exec();
     res.json(learningProgress);
@@ -73,7 +74,7 @@ export const editLearningProgress = async (req, res) => {
       { new: true }
     )
       .populate("user")
-      // .populate("day")
+      .populate("day")
       .exec();
     res.json(learningProgress);
   } catch (error) {
