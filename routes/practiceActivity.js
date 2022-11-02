@@ -82,6 +82,8 @@ const router = express.Router();
  * */
 router.get("/practiceActivities", getListPracticeActivity);
 
+
+
 // -------------------Get Detail PracticeActivity----------------------
 /**
  * @swagger
@@ -134,7 +136,7 @@ router.get("/practiceActivity/day/:id", getListPracticeActivityByDay);
  *             description: The PracticeActivity is Not found
  */
 
-router.get("/practiceActivity/:id", detailPracticeActivity);
+ router.get("/practiceActivity/:activityId/:userId", detailPracticeActivity);
 
 // -------------------Add PracticeActivity----------------------
 /**

@@ -33,10 +33,10 @@ const routeComment = express.Router();
  *           type: string
  *           description: userId of Comments
  *         postId:
- *           type: String
+ *           type: string
  *           description: postId of Comments
  *         content:
- *           type: String
+ *           type: string
  *           description: content of Comments
  *         datetime:
  *           type: string
@@ -66,21 +66,21 @@ const routeComment = express.Router();
  *           type: string
  *           description: Update Time of Comments
  *       example:
- *         _id: 62e8c62b587bcad52fbaf0b
- *         userId: 62e8c62b587bcad52fbaf0b
- *         postId: 62e8c62b587bcad52fbaf0b
+ *         _id: 62e8c62b587bcad52fbaf0b7
+ *         userId: 62e8c62b587bcad52fbaf0b7
+ *         postId: 62e8c62b587bcad52fbaf0b7
  *         content: content of Comments
  *         datetime: datetime of Comments
  *         author: author of Comments
  *         avatar: avatar of Comments
  *         rating: rating of Comments
- *         like:[
+ *         like: [
  *              {
  *                  userId: 62e8c62b587bcad52fbaf0b7,
  *                  status: like
  *              }
  *          ]
- *         dislike:[
+ *         dislike: [
  *              {
  *                  userId: 62e8c62b587bcad52fbaf0b7,
  *                  status: like
