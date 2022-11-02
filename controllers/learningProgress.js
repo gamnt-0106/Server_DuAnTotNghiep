@@ -14,6 +14,20 @@ export const getListLearningProgress = async (req, res) => {
   }
 };
 
+export const getListProgressByUser = async (req, res) => {
+  try {
+    const learningProgress = await LearningProgress.find({
+      user: req.params.userId
+    })
+    .populate("day")
+      .populate("user")
+      .exec();
+    res.json(learningProgress);
+  } catch (error) {
+    res.status(400).json({ message: "Không tìm thấy Data" });
+  }
+};
+
 export const getProgressByUserAndDay = async (req, res) => {
   try {
     const learningProgress = await LearningProgress.findOne({
