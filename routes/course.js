@@ -24,11 +24,6 @@ const routeCourse = express.Router();
  *       required:
  *         - title
  *         - price
- *         - address
- *         - totalBuy
- *         - email
- *         - phone
- *         - message
  *       properties:
  *         _id:
  *           type: string
@@ -39,9 +34,6 @@ const routeCourse = express.Router();
  *         price:
  *           type: Number
  *           description: price of Courses
- *         rating:
- *           type: Number
- *           description: rating of Courses
  *         totalBuy:
  *           type: Number
  *           description: totalBuy of Courses
@@ -56,7 +48,7 @@ const routeCourse = express.Router();
  *           description: Update Time of Courses
  *       example:
  *         _id: 62e8c62b587bcad52fbaf0b
- *         name: name
+ *         title: title
  *         price: 100000
  *         rating: 1000
  *         totalBuy: 1000
