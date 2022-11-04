@@ -144,7 +144,7 @@ router.get("/learningProgress", getListLearningProgress);
  *             description: The LearningProgress is Not found
  */
 
-router.get("/learningProgress/:dayId&:userId", getProgressByUserAndDay);
+router.get("/learningProgress/:dayId/:userId", getProgressByUserAndDay);
 //
 
 
