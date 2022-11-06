@@ -1,12 +1,7 @@
-import express from "express";
-import {
-  addSentence,
-  deleteSentence,
-  editSentence,
-  getDetailSentence,
-  getlistSentence,
-  getlistSentenceByIdActivity,
-} from "../controllers/sentencesController";
+
+import express  from "express";
+import { addSentence, deleteSentence, editSentence, getDetailSentence, getlistSentence, getlistSentenceByIdActivity, getlistSentenceByIdDay } from "../controllers/sentencesController";
+
 
 const router = express.Router();
 
@@ -225,6 +220,10 @@ router.post("/sentences", addSentence);
 
 router.put("/sentences/:id", editSentence);
 
+
+router.get("/sentences/activity/:id", getlistSentenceByIdActivity);
+router.get("/sentences/day/:dayId", getlistSentenceByIdDay);
+
 // -------------------Remove Sentence----------------------
 /**
  * @swagger
@@ -257,6 +256,7 @@ router.put("/sentences/:id", editSentence);
  */
 
 router.delete("/sentences/:id", deleteSentence);
+
 
 // -------------------Join Sentence----------------------
 /**
