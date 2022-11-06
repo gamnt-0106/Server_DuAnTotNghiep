@@ -2,7 +2,7 @@ import Vocabulary from "../models/vocabulary";
 
 export const listVocabulary = async (req, res, offset) => {
     try {
-        const vocabulary = await Vocabulary.find().select("-__v").populate('category').exec();
+        const vocabulary = await Vocabulary.find().select("-__v").populate('dayId').exec();
         res.json(vocabulary)
     } catch (error) {
       res.status(400).json({massage:"Không tìm thấy!"});
