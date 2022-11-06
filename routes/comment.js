@@ -250,7 +250,7 @@ const routeComment = express.Router();
   * @swagger
   * /api/comment/like/{id}:
   *   put:
-  *     summary: Join a Comment by link
+  *     summary: like comment
   *     tags: [Comments]
   *     parameters:
   *       - in: path
@@ -267,13 +267,13 @@ const routeComment = express.Router();
   *             $ref: '#/components/schemas/Comment'
   *     responses:
   *       200:
-  *         description: Comment was successfully join
+  *         description: Comment was successfully like
   *         content:
   *           application/json:
   *             schema:
   *               $ref: '#/components/schemas/Comment'
   *       400:
-  *         description: Fail to join a Comment
+  *         description: Fail to like a Comment
   */
  
   routeComment.put('/comment/like/:id', editComment);
