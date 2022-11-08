@@ -2,38 +2,38 @@ import mongoose from "mongoose";
 const { ObjectId } = mongoose
 
 const historySchema = new mongoose.Schema({
-    user:{
+    user: {
         type: ObjectId,
         ref: "User"
     },
-    practiceActivity:{
+    practiceActivity: {
         type: ObjectId,
         ref: "PracticeActivity"
     },
-    // score:{
-    //     type: Number,
-    //     required: true
-    // },
-    totalPoint:{
+    learningProgress: {
+        type: ObjectId,
+        ref: "LearningProgress"
+    },
+    score: {
         type: Number,
         required: true
     },
-    totalCorrect:{
+    totalScore: {
         type: Number,
         required: true
     },
-    result:{
+    totalCorrect: {
         type: Number,
         required: true
     },
-    type:{
+    result: {
         type: Number,
         required: true
     },
-    // experience:{
-    //     type: Number,
-    //     required: true
-    // }
-},{timestamps:true})
+    type: {
+        type: String,
+        required: true
+    }
+}, { timestamps: true })
 
-export default mongoose.model("History",historySchema)
+export default mongoose.model("History", historySchema)

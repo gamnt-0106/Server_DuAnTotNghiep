@@ -4,20 +4,25 @@ const wellcomeSchema =  new mongoose.Schema({
     username : {
         type: String,
         // required: true,
+        default:""
     },
     numberphone: {
-        type:Number,
+        type:String,
         // required:true,
-        trim: true
+        trim: true,
+        default:""
     },
     social: {
-        type: String   
+        type: Array,
+        default:""
     },
     reason: {
-        type: String
+        type: Array,
+        default:""
     },
     timeStudy:{
-        type:String
+        type: Array,
+        default:""
     }
 },{timestamps:true})
 

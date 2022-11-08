@@ -47,3 +47,12 @@ export const deleteQuiz = async (req,res)=>{
         res.status(400).json({message:"Xóa thất bại"})
     }
 }
+
+export const getExerciseQuizByIdPracticeActivity = async (req,res)=>{
+  try {
+      const data = await Quiz.find({practiceActivity: req.params.practiceActivity }).exec()
+      res.json(data)
+  } catch (error) {
+      res.status(400).json({message:"Không tìm thấy Data"})
+  }
+}

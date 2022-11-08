@@ -14,7 +14,7 @@ export const addGrammar = async (req, res) => {
     console.log(req.body);
     try {
         const data = await Grammar(req.body).save();
-        req.json(data)
+        res.json(data)
     } catch (error) {
         res.status(400).json({message: "Fail!"})
     }
@@ -30,6 +30,7 @@ export const detailGrammar = async (req,res)=>{
 }
 
 export const updateGrammar = async (req, res) =>{
+    console.log(req.body);
     try {
         const data = await Grammar.findOneAndUpdate({_id:req.params.id}, req.body, {new:true}).exec();
         res.json(data)

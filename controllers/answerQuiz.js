@@ -44,3 +44,12 @@ export const deleteAnswerQuiz = async (req,res)=>{
         res.status(400).json({message:"Xóa thất bại"})
     }
 }
+
+export const getAnswerByIdQuiz = async (req,res)=>{
+  try {
+      const answerQuiz = await AnswerQuiz.find({quiz: req.params.quiz }).exec()
+      res.json(answerQuiz)
+  } catch (error) {
+      res.status(400).json({message:"Không tìm thấy Data"})
+  }
+}
