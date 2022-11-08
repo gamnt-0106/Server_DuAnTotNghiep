@@ -13,7 +13,9 @@ export const transcribeSpeech = async (req, res) => {
     // const gcsUri = 'gs://cloud-samples-data/speech/brooklyn_bridge.raw';
     // const gcsUri = 'gs://vian_english/audio-files/play_sound.mp3';
     // const gcsUri = 'gs://vian_english/test/what-are-you-doing-22344.mp3';
-        const gcsUri = 'gs://vian_english/test/what-are-you-doing-22344.wav';
+        // const gcsUri = 'gs://vian_english/test/what-are-you-doing-22344.wav';
+        const gcsUri = 'gs://vian_english/audio-files/Luyện-nói-Tiếng-Anh-qua-phim__Harry-Potter-và-hòn-đá-phù-thủy.wav';
+        
 
     const audio = {
         uri: gcsUri,
@@ -24,7 +26,10 @@ export const transcribeSpeech = async (req, res) => {
         encoding: 'LINEAR16',
         // encoding: 'MP3',
         // sampleRateHertz: 16000,
-        sampleRateHertz: 24000,
+        // sampleRateHertz: 24000,
+        // sampleRateHertz:  48000,
+        useEnhanced: true,
+        model: 'phone_call',
         languageCode: 'en-US',
         enableWordTimeOffsets: true,
         // enableWordConfidence: true,
