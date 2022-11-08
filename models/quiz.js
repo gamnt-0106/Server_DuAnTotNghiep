@@ -10,16 +10,19 @@ const quizSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    questionAfter:{
+      type: String,
+    },
     image:{
         type: String,
-        required: true
+        default: ""
     },
     timeLimit:{
         type: Number,
-        required: true
+        default: 0
     },
     type:{
-        type: Number,
+        type: String,
         required: true
     },
     meaning:{

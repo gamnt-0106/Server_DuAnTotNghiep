@@ -14,3 +14,4 @@ routeAuth.delete('/users/:id',deleteUser);
 routeAuth.get('/users/currentUser/current', getCurrentUser);
 
 export default routeAuth;
+

@@ -1,22 +1,40 @@
 import mongoose from "mongoose";
+const { ObjectId } = mongoose;
 
-const sentenceSchema = new mongoose.Schema({
-    words:{
-        type: String,
-        required: true
+const sentenceSchema = new mongoose.Schema(
+  {
+    practiceActivity: {
+      type: ObjectId,
+      ref: "PracticeActivity",
     },
-    meaning:{
-        type: String,
-        required: true
+    words: {
+      type: String,
+      required: true,
     },
-    //Ví dụ
-    example:{
-        type: String,
-        // required: true
+    meaning: {
+      type: String,
+      required: true,
     },
-    explain:{
-        type:String
-    }
-}, {timestamps:true})
+    phoneticTranscription: {
+      type: String,
+      required: true,
+    },
+    soundCombinations: [
+      {
+        sound: {
+          type: String,
+        },
+        combinations: Array,
+      },
+    ],
+    structuralAnalysis: {
+      type: String,
+    },
+    grammarAnalysis: {
+      type: String,
+    },
+  },
+  { timestamps: true }
+);
 
-export default mongoose.model('Sentences', sentenceSchema)
+export default mongoose.model("Sentences", sentenceSchema);

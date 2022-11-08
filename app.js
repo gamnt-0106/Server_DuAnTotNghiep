@@ -75,6 +75,9 @@ import routeReplyComment from './routes/replycomment';
 
 
 //----------------PracticeActivity---------
+
+//-----------------LearningProgress------------------------ 
+import LearningProgress from './routes/learningProgress';
 import PracticeActivityRouter from './routes/practiceActivity'
 
 //----------------GoogleSpeech---------
@@ -188,6 +191,9 @@ app.use("/api", week)
 
 //----------------Day------------------------ 
 app.use("/api", day)
+
+//----------------LearningProgress------------------------ 
+app.use("/api", LearningProgress)
 
 //----------------PracticeActivity-------------
 app.use('/api', PracticeActivityRouter)
