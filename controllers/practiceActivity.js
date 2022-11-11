@@ -7,7 +7,6 @@ import Speak  from "../models/speak";
 export const getListPracticeActivity = async (req, res) => {
   try {
     const listpracticeActivity = await PracticeActivity.find()
-      .populate('day')
       .exec();
     res.json(listpracticeActivity);
   } catch (error) {
