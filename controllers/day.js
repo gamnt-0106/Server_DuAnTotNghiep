@@ -20,8 +20,6 @@ export const listDayByWeek = async (req, res) => {
     }
 }
 
-
-
 export const detailDay= async (req,res)=>{
     try {
         const day = await Day.findOne({_id: req.params.id }).exec()
@@ -60,3 +58,11 @@ export const removeDay = async (req, res) => {
     }
 }
 
+export const getDayBiggest = async (req, res) => {
+    try {
+        const day = await Day.findOne().sort({order:-1}).limit(1).exec();
+        res.json(day)
+    } catch (error) {
+        res.status(400).json({message:"Lỗi!"})
+    }
+}

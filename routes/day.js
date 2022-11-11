@@ -3,6 +3,7 @@ import {
   addDay,
   detailDay,
   editDay,
+  getDayBiggest,
   listDay,
   listDayByWeek,
   removeDay,
@@ -233,4 +234,6 @@ routeDay.put("/day/:id", editDay);
  */
 
 routeDay.delete("/day/:id", removeDay);
+
+routeDay.get("/dayBiggest", getDayBiggest);
 export default routeDay;
