@@ -3,7 +3,7 @@ import Quiz from "../models/quiz"
 
 export const listQuiz = async (req,res)=>{
     try {
-        const quiz = await Quiz.find().exec()
+        const quiz = await Quiz.find().populate("practiceActivity").exec()
         res.json(quiz)
     } catch (error) {
         res.status(400).json({message:"Không tìm thấy Data"})
