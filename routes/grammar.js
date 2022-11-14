@@ -3,7 +3,7 @@ import { addGrammar, deleteGrammar, detailGrammar, getDayGrammar, listGrammar, u
 
 const router = express.Router();
 
-// router.get("/grammar/:id", detailGrammar);
+router.get("/grammar/:id", detailGrammar);
 
 // Mỗi thuộc tính cách nhau 2 dòng
 
