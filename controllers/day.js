@@ -4,7 +4,7 @@ import Day from "../models/day";
 
 export const listDay = async (req, res) => {
     try {
-        const day = await Day.find().exec();
+        const day = await Day.find().populate("week").exec();
         res.json(day)
     } catch (error) {
         res.status(400).json({message:"Không tìm thấy"})

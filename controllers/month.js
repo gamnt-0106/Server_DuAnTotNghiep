@@ -12,6 +12,14 @@ export const listMonth = async (req, res) => {
     }
 }
 
+export const monthBiggest = async (req, res) => {
+  try {
+      const month = await Month.findOne().sort({order:-1}).limit(1).exec();
+      res.json(month)
+  } catch (error) {
+      res.status(400).json({message:"Không tìm thấy"})
+  }
+}
 
 export const detailMonth= async (req,res)=>{
     try {

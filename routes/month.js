@@ -1,11 +1,11 @@
 import express from 'express'
-import { addMonth, detailMonth, editMonth, listMonth, removeMonth } from '../controllers/month';
+import { addMonth, detailMonth, editMonth, listMonth, monthBiggest, removeMonth } from '../controllers/month';
 
 
 const routeMonth = express.Router();
 
 
-
+routeMonth.get("/month/monthBiggest",monthBiggest);
 // Mỗi thuộc tính cách nhau 2 dòng
 
 // Tag (mục) của router

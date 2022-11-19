@@ -12,6 +12,15 @@ export const listWeek = async (req, res) => {
     }
 }
 
+export const weekBiggest = async (req, res) => {
+  try {
+      const week = await Week.findOne().sort({order:-1}).limit(1).exec();
+      res.json(week)
+  } catch (error) {
+      res.status(400).json({message:"Không tìm thấy"})
+  }
+}
+
 export const listWeekByMonth = async (req, res) => {
     try {
         const week = await Week.find({month: req.params.id }).exec();
