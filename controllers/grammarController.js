@@ -41,7 +41,7 @@ export const updateGrammar = async (req, res) =>{
 
 export const deleteGrammar = async (req, res) => {
     try {
-        const data = await Grammar.findOneAndDelete({id:req.params.id}).exec();
+        const data = await Grammar.findOneAndDelete({_id:req.params.id}).exec();
         res.json(data)
     } catch (error) {
         res.status(400).json({message:"Xóa thất bại"})

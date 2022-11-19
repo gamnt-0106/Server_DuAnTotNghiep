@@ -34,6 +34,9 @@ const listenWriteSchema = new mongoose.Schema({
     audio:{
         type: String,
         required: true
+    },
+    test:{
+      type: String,
     }
 }, { timestamps: true })
 
