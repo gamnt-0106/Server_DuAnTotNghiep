@@ -254,8 +254,22 @@ export const userByEmail = async (req, res, next) => {
     console.log(error);
   }
 };
-
 export const updateUser = async (request, response) => {
+  try {
+    const user = await User.findOneAndUpdate(
+      { _id: request.params.id },
+      request.body,
+      { new: true }
+    );
+    return response
+      .status(200)
+      .json({ message: "Cập nhật thành công !", user:user });
+  } catch (error) {
+    response.status(400).json({ message: "Không thể sửa" });
+  }
+};
+
+export const updateAuth = async (request, response) => {
   try {
     const user = await User.findOneAndUpdate(
       { _id: request.params.id },
