@@ -24,6 +24,18 @@ const classSchema = new mongoose.Schema({
             }
         }
     ],
+    teacherOfClass: [
+      {
+          userId: {
+              type: ObjectId,
+              ref: "User"
+          },
+          timeJoinClass: {
+              type: Date,
+              default: new Date()
+          }
+      }
+  ],
     linkJoinClass: {
         type: String,
         default: linkJoin
