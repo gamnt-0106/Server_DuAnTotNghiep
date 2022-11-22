@@ -13,6 +13,9 @@ const replycommentSchema = new mongoose.Schema({
     postId: {
         type: String
     },
+    dayId:{
+        type: String
+    },
     content: {
         type: String,
         required: true
