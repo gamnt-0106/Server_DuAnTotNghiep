@@ -23,7 +23,11 @@ const answerQuizSchema = new mongoose.Schema(
     explainAnswer:{
       type: String,
       default: "",
-    }
+    },
+    image:{
+      type: String,
+      default: ""
+  },
   },
   { timestamps: true }
 );
