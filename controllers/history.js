@@ -18,6 +18,7 @@ export const listHistoryByUser = async (req, res) => {
       .populate("practiceActivity")
       .populate("learningProgress")
       .populate("user")
+      .sort({createdAt:-1})
       .exec();
     res.json(history);
   } catch (error) {
