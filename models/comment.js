@@ -3,9 +3,6 @@ import replycomment from "./replycomment";
 
 const commentSchema = new mongoose.Schema(
   {
-    id: {
-      type: Number,
-    },
     userId: {
       type: String,
     },
@@ -18,9 +15,6 @@ const commentSchema = new mongoose.Schema(
     content: {
       type: String,
       required: true,
-    },
-    datetime: {
-      type: String,
     },
     author: {
       type: String,

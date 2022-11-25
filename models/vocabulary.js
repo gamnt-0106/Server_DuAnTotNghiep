@@ -1,48 +1,32 @@
 import mongoose from "mongoose";
-const {ObjectId} = mongoose
+const { ObjectId } = mongoose
 const vocabularySchema = new mongoose.Schema({
     // Từ
-    words:{
+    words: {
         required: true,
         type: String
     },
     // Ý nghĩa
-    meaning:{
+    meaning: {
         required: true,
         type: String
     },
     // Loại từ
-    wordForm:{
+    wordForm: {
         required: true,
         type: String
     },
     // Ảnh
-    image:{
+    image: {
         type: String,
         // required: true
     },
-    category:{
-        type: ObjectId,
-        ref:"TopicVocabulary"
-    },
-    audio:{
-        type: String,
-        // required: true
-        default:""
-    },
-    // 1: us
-    // 0:uk
-    place:{
-        type: Number,
-        // required: true
-    },
-    // Phiên âm
-    pa:{
+    pa: {
         type: String,
         required: true
     },
-    example:{
-        type:String,
+    example: {
+        type: String,
         required: true
     },
     exampleDirection:{
@@ -52,22 +36,13 @@ const vocabularySchema = new mongoose.Schema({
     // Cụm từ
     sentences:{
         type: ObjectId,
-        ref:""
+        ref: "Day"
     },
-    dayId:{
-      type: ObjectId,
-      ref:"Day"  
-    },
-    // Cấu trúc cụm từ
-    structureSentences:{
-        type:ObjectId,
-        ref:""
-    },
-    // Ngữ pháp
-    grammar:{
+    actityId: {
         type: ObjectId,
-        ref:"Grammar"
-    }
-}, {timestamps: true})
+        ref: "PracticeActivity"
+    },
+
+}, { timestamps: true })
 
 export default mongoose.model("Vocabulary", vocabularySchema)
