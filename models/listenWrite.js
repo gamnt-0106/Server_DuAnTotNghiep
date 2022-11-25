@@ -5,7 +5,6 @@ const { ObjectId } = mongoose
 const listenWriteSchema = new mongoose.Schema({
     area: {
         type: String,
-        required: true
     },
     practiceActivity: {
         type: ObjectId,
@@ -15,11 +14,9 @@ const listenWriteSchema = new mongoose.Schema({
         {
             name: {
                 type: String,
-                required: true
             },
             text: {
                 type: String,
-                required: true
             },
             answer: {
                 type: Array,
@@ -33,9 +30,8 @@ const listenWriteSchema = new mongoose.Schema({
     // },
     audio:{
         type: String,
-        required: true
     },
-    test:{
+    structure:{
       type: String,
     }
 }, { timestamps: true })
