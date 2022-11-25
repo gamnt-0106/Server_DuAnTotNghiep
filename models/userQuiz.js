@@ -16,7 +16,7 @@ const userQuizSchema = new mongoose.Schema({
     },
     time:{
         type: String,
-        required: true
+        // required: true
     },
     point:{
         type: Number,

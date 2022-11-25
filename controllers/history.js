@@ -15,10 +15,17 @@ export const listHistoryByUser = async (req, res) => {
   try {
     // const history = await History.find({user: req.params.userId}).exec()
     const history = await History.find({ user: req.params.userId })
-      .populate("practiceActivity")
+      // .populate("practiceActivity")
+      .populate({
+        path: 'practiceActivity',
+        populate: {
+          path: 'day',
+          model: 'Day'
+        }
+      })
       .populate("learningProgress")
       .populate("user")
-      .sort({createdAt:-1})
+      .sort({ createdAt: -1 })
       .exec();
     res.json(history);
   } catch (error) {
@@ -60,7 +67,6 @@ export const detailHistory = async (req, res) => {
     const history = await History.findOne({ _id: req.params.id })
       .populate("practiceActivity")
       .exec();
-    // const userQuiz = await UserQuiz.find({_id: history.answerQuiz}).populate("answerQuiz").exec()
     const userQuiz2 = await UserQuiz.find({ history })
       .populate("answerQuiz")
       .populate("quiz")
@@ -72,19 +78,17 @@ export const detailHistory = async (req, res) => {
         quiz: userQuiz2[index].quiz._id,
         isCorrect: 1,
       }).exec();
-      // flag.push(answerQuiz)
-      // flag[index].correctAnswer = answerQuiz
       userQuiz[index] = {
         ...userQuiz[index]._doc,
         correctAnswer: answerQuiz[0],
       };
-      // console.log("flag",flag);
     }
 
     res.json({ history, userQuiz });
   } catch (error) {
     res.status(400).json({ message: "Không tìm thấy Data" });
   }
+
 };
 
 export const addHistory = async (req, res) => {
