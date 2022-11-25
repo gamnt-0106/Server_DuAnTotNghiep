@@ -3,21 +3,12 @@ import replycomment from "./replycomment";
 
 const commentSchema = new mongoose.Schema(
   {
-    id: {
-      type: Number,
-    },
     userId: {
-      type: String,
-    },
-    postId: {
       type: String,
     },
     content: {
       type: String,
       required: true,
-    },
-    datetime: {
-      type: String,
     },
     author: {
       type: String,

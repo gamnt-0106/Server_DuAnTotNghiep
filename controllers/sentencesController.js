@@ -24,8 +24,6 @@ export const getlistSentenceByIdDay = async (req, res) => {
     try {
         const practiceActivity = await PracticeActivity.find({ day: req.params.dayId, type: "sentences"}).exec();
         const data = await Sentences.find({ practiceActivity: practiceActivity }).exec();
-        console.log("practiceActivity api",practiceActivity)
-        console.log("Sentences api",data)
         res.json(data)
     } catch (error) {
         res.status(400).json({message:"Lỗi"})
