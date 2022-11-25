@@ -30,6 +30,8 @@ export const signIn = async (req, res) => {
         img: user.img,
         sex: user.sex,
         colorImage: user.colorImage,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
       },
       "123456",
       { expiresIn: "12h" }
@@ -252,7 +254,6 @@ export const userByEmail = async (req, res, next) => {
     console.log(error);
   }
 };
-
 export const updateUser = async (request, response) => {
   try {
     const user = await User.findOneAndUpdate(
@@ -260,7 +261,44 @@ export const updateUser = async (request, response) => {
       request.body,
       { new: true }
     );
-    response.json(user);
+    return response
+      .status(200)
+      .json({ message: "Cập nhật thành công !", user:user });
+  } catch (error) {
+    response.status(400).json({ message: "Không thể sửa" });
+  }
+};
+
+export const updateAuth = async (request, response) => {
+  try {
+    const user = await User.findOneAndUpdate(
+      { _id: request.params.id },
+      request.body,
+      { new: true }
+    );
+
+    const token = jwt.sign(
+      {
+        _id: user._id,
+        email: user.email,
+        username: user.username,
+        role: user.role,
+        phone: user.phone,
+        address: user.address,
+        img: user.img,
+        sex: user.sex,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
+      },
+      "123456",
+      { expiresIn: "12h" }
+    );
+
+    response.setHeader("userCookie", token);
+
+    return response
+      .status(200)
+      .json({ message: "Cập nhật thành công !", token: token });
   } catch (error) {
     response.status(400).json({ message: "Không thể sửa" });
   }
@@ -272,6 +310,39 @@ export const deleteUser = async (request, response) => {
     response.json(user);
   } catch (error) {
     response.status(400).json({ message: "Không thể xóa" });
+  }
+};
+
+export const editPasswordUser = async (req, res, next) => {
+  try {
+    const  {_id, password, oldPass}  = req.body;
+
+    const user = await User.findOne({ _id }).exec();
+    if (!user) {
+      return res.json({
+        message: "Tài khoản hoặc mật khẩu không chính xác",
+      });
+    }
+    const match = await bcrypt.compare(oldPass, user.password);
+    if (match == false) {
+      return res.json({
+        message: "Mật khẩu không chính xác",
+      });
+    }
+
+    // // mã hóa pass
+    const salt = await bcrypt.genSalt(10);
+    const newPassword = await bcrypt.hash(password, salt);
+
+    const userNewPassword = await User.findOneAndUpdate(
+      { _id: _id },
+      { password: newPassword },
+      { new: true }
+    );
+
+    res.json(userNewPassword);
+  } catch (error) {
+    res.status(400).json({ message: "Lỗi rồi" });
   }
 };
 

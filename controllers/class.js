@@ -22,6 +22,10 @@ export const detailClass = async (req, res) => {
         path: "userOfClass",
         populate: { path: "userId" },
       })
+      .populate({
+        path: "teacherOfClass",
+        populate: { path: "userId" },
+      })
       .exec();
     res.json({ class: itemClass });
   } catch (error) {

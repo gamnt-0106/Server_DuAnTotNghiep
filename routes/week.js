@@ -1,9 +1,10 @@
 import express from 'express'
-import { addWeek, detailWeek, editWeek, listWeek, listWeekByMonth, removeWeek } from '../controllers/week';
+import { addWeek, detailWeek, editWeek, listWeek, listWeekByMonth, removeWeek, weekBiggest } from '../controllers/week';
 
 
 const routeWeek = express.Router();
 
+routeWeek.get("/week/weekBiggest", weekBiggest);
 // Mỗi thuộc tính cách nhau 2 dòng
 
 // Tag (mục) của router

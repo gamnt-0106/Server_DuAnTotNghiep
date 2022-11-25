@@ -29,7 +29,12 @@ const vocabularySchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    dayId: {
+    exampleDirection:{
+        type:String,
+        default:""
+    },
+    // Cụm từ
+    sentences:{
         type: ObjectId,
         ref: "Day"
     },
