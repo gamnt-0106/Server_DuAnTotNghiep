@@ -38,6 +38,10 @@ const vocabularySchema = new mongoose.Schema({
         type: ObjectId,
         ref: "Day"
     },
+    dayId:{
+      type: ObjectId,
+      ref: "Day"
+    },
     actityId: {
         type: ObjectId,
         ref: "PracticeActivity"
