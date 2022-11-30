@@ -15,6 +15,21 @@ export const getListClass = async (req, res) => {
   }
 };
 
+export const getClassByUserId = async (req, res) => {
+  try {
+    const {userId} = req.params;
+    const listClass = await Classes.find({})
+      .populate({
+        path: "userOfClass",
+        populate: { path: "userId" },
+      })
+      .exec();
+    res.json(listClass);
+  } catch (error) {
+    res.status(400).json({ message: "Không tìm thấy Data" });
+  }
+};
+
 export const detailClass = async (req, res) => {
   try {
     const itemClass = await Classes.findOne({ _id: req.params.id })
