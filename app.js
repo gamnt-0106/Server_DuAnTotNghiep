@@ -83,6 +83,8 @@ import PracticeActivityRouter from './routes/practiceActivity'
 //----------------GoogleSpeech---------
 import googleSpeech from './routes/googleSpeech';
 
+import messageRouter from './routes/message';
+
 const speech = require('@google-cloud/speech');
 const speechClient = new speech.SpeechClient()
 
@@ -200,6 +202,9 @@ app.use('/api', PracticeActivityRouter)
 
 //----------------GoogleSpeech-------------
 app.use('/api', googleSpeech)
+
+//----------------GoogleSpeech-------------
+app.use('/api', messageRouter)
 
 mongoose
   .connect(process.env.MONGO_URI)
