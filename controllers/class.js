@@ -8,6 +8,10 @@ export const getListClass = async (req, res) => {
         path: "userOfClass",
         populate: { path: "userId" },
       })
+      .populate({
+        path: "teacherOfClass",
+        populate: { path: "userId" },
+      })
       .exec();
     res.json(listClass);
   } catch (error) {
