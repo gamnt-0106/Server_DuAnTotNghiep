@@ -24,7 +24,18 @@ export const getClassByUserId = async (req, res) => {
         populate: { path: "userId" },
       })
       .exec();
-    res.json(listClass);
+    const listClassByUserId = listClass.filter((item) => {
+      const listUser = item.userOfClass;
+
+      const check = listUser.find((item) => item.userId._id.toString() === userId);
+      console.log(check);
+      if (check) {
+        return true;
+      } else {
+        return false;
+      }
+    })
+    res.json(listClassByUserId);
   } catch (error) {
     res.status(400).json({ message: "Không tìm thấy Data" });
   }
